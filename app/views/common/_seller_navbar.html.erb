@@ -1,54 +1,31 @@
 <header class="navbar">
   <div class="navbar-header">
-    <a href="index.html" class="site-logo visible-desktop">
-      動物農莊
-    </a>
+    <a href="index.html" class="site-logo visible-desktop">商店管理面板</a>
   </div>
 
-  <!-- Mobile Menu Wrapper -->
   <div class="mobile-menu-wrapper">
-
-    <!-- Toolbar -->
     <div class="toolbar">
-      <a href="account.html"><i class="material-icons person"></i></a>
+      <%= link_to icon("person"), "#" %>
+      <%= link_to icon("list"), seller_products_path %>
       <div class="cart-btn">
-        <a href="shopping-cart.html">
+        <a href="#">
           <i>
-            <span class="material-icons shopping_basket"></span>
+            <span class="material-icons loyalty"></span>
             <span class="count">2</span>
           </i>
         </a>
-      </div><!-- .cart-btn -->
-      <a href="#" class="subscribe-btn"><i class="material-icons mail_outline"></i></a>
-    </div><!-- .toolbar -->
+      </div>
 
-    <!-- Main Navigation -->
+    </div>
+
     <nav class="main-navigation">
       <ul class="menu">
-        <li class="menu-item-has-children">
-          <a href="#">Home</a>
-          <ul class="sub-menu">
-            <li><a href="index.html">Home Version 1</a></li>
-            <li><a href="home-v2.html">Home Version 2</a></li>
-            <li><a href="home-v3.html">Home Version 3</a></li>
-          </ul>
+        <li>
+          <%= link_to seller_products_path do %>
+            <%= icon("list") %> Products
+          <% end %>
         </li>
-        <li class="menu-item-has-children current-menu-item">
-          <a href="#">Shop</a>
-          <ul class="sub-menu">
-            <li><a href="shop-sidebar-left.html">Shop Sidebar Left</a></li>
-            <li><a href="shop-sidebar-right.html">Shop Sidebar Right</a></li>
-            <li class="current-menu-item"><a href="shop-filters-top.html">Shop Filters Top</a></li>
-            <li><a href="shop-single.html">Single Product</a></li>
-          </ul>
-        </li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contacts.html">Contacts</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="elements.html">Elements</a></li>
       </ul>
     </nav>
   </div>
-
 </header>
