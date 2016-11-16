@@ -25,6 +25,9 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'carrierwave', '>= 1.0.0.rc'
 gem 'mini_magick'
 gem 'rails-i18n', '~> 5.0.0'
+gem 'bootstrap_form'
+gem 'bootstrap-sass'
+
 group :development, :test do
   gem 'meta_request'
   gem 'bullet'
