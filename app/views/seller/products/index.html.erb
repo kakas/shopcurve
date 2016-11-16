@@ -15,9 +15,9 @@
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>Description</th>
           <th>Price</th>
           <th>Stock</th>
+          <th width="20%">Function</th>
         </tr>
       </thead>
       <tbody>
@@ -25,9 +25,13 @@
           <tr>
             <td scope="row"><%= product.id %></td>
             <td><%= product.name %></td>
-            <td width="60%"><%= product.description %></td>
             <td><%= number_to_currency product.price %></td>
             <td><%= product.stock %></td>
+            <td>
+              <%= link_to "Edit", edit_seller_product_path(product), class: "btn btn-ghost btn-pill btn-sm btn-default waves-effect waves-light" %>
+              <%= link_to "Delete", seller_product_path(product), method: :delete,
+                class: "btn btn-ghost btn-pill btn-sm btn-default waves-effect waves-light", data: {confirm: "Are you sure?"} %>
+          </td>
           </tr>
         <% end %>
       </tbody>
