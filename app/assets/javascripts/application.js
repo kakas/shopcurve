@@ -11,7 +11,15 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap/dropdown
+//= require bootstrap-sprockets
+//= require smoothscroll
+//= require velocity.min
+//= require waves.min
+//= require icheck.min
+//= require owl.carousel.min
+//= require magnific-popup.min
+//= require nouislider.min
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require page-preloading
+//= require scripts
