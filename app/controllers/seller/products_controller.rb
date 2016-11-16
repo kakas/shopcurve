@@ -9,6 +9,7 @@ class Seller::ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @photo = @product.build_photo
   end
 
   def create
@@ -17,17 +18,20 @@ class Seller::ProductsController < ApplicationController
     if @product.save
       redirect_to seller_products_path
     else
+      @photo = @product.build_photo
       render :new
     end
   end
 
   def edit
+    @photo = @product.photo || @product.build_photo
   end
 
   def update
     if @product.update(product_params)
       redirect_to seller_products_path
     else
+      @photo = @product.photo || @product.build_photo
       render :edit
     end
   end
@@ -48,7 +52,7 @@ class Seller::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :stock)
+    params.require(:product).permit(:name, :description, :price, :stock, photo_attributes: [:image])
   end
 
 end

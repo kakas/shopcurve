@@ -14,6 +14,7 @@
       <thead>
         <tr>
           <th>#</th>
+          <th>Photo</th>
           <th>Name</th>
           <th>Price</th>
           <th>Stock</th>
@@ -24,6 +25,7 @@
         <% @products.each do |product| %>
           <tr>
             <td scope="row"><%= product.id %></td>
+            <td><%= render_image_by(product.photo, "thumb") %></td>
             <td><%= product.name %></td>
             <td><%= number_to_currency product.price %></td>
             <td><%= product.stock %></td>

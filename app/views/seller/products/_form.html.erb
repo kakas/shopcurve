@@ -6,6 +6,10 @@
         <%= f.text_field :price, type: "number", min: 0 %>
         <%= f.text_field :stock, type: "number", min: 0 %>
         <%= f.text_area :description, rows: 8 %>
+        <%= f.fields_for :photo do |photo_f| %>
+          <%= render_image_by(@product.photo, "thumb") %>
+          <%= photo_f.file_field :image %>
+        <% end %>
         <%= f.submit "Submit", class: "btn btn-primary", data: {disable_with: "Submitting..."} %>
       <% end %>
     </div>
