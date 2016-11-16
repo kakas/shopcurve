@@ -1,58 +1,41 @@
-<!-- Page Title -->
-<section class="container padding-top-3x">
-  <h1 class="space-top-half tablet-center">Bread Crumbs Here > Products</h1>
-</section><!-- .container-fluid -->
+<section>
+  <div class="container padding-top">
+    <%= link_to new_seller_product_path, class: "btn btn-info btn-icon-right waves-effect waves-light pull-right" do %>
+      New Product
+      <%= icon("arrow_forward") %>
+    <% end %>
+  </div>
+</section>
 
-
-<!-- Shop Catalog -->
 <section class="container padding-bottom-3x">
   <!-- Product Table Here -->
-  <h5 class="text-uppercase text-gray text-thin space-bottom">Tables</h5>
   <div class="table-responsive">
     <table>
       <thead>
         <tr>
           <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Position</th>
-          <th>Username</th>
-          <th>Phone</th>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th width="20%">Function</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Johnathan</td>
-          <td>Doe</td>
-          <td>CEO, Founder</td>
-          <td>@johny</td>
-          <td>+3 555 68 70</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Anna</td>
-          <td>Cabana</td>
-          <td>Designer</td>
-          <td>@cabana</td>
-          <td>+3 434 65 93</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Kale</td>
-          <td>Thornton</td>
-          <td>Developer</td>
-          <td>@thornton</td>
-          <td>+3 285 42 88</td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>Jane</td>
-          <td>Birkins</td>
-          <td>Support</td>
-          <td>@birkins</td>
-          <td>+3 774 28 50</td>
-        </tr>
+        <% @products.each do |product| %>
+          <tr>
+            <td scope="row"><%= product.id %></td>
+            <td><%= render_image_by(product.photo, "thumb") %></td>
+            <td><%= product.name %></td>
+            <td><%= number_to_currency product.price %></td>
+            <td><%= product.stock %></td>
+            <td>
+              <%= link_to "Edit", edit_seller_product_path(product), class: "btn btn-ghost btn-pill btn-sm btn-default waves-effect waves-light" %>
+              <%= link_to "Delete", seller_product_path(product), method: :delete,
+                class: "btn btn-ghost btn-pill btn-sm btn-default waves-effect waves-light", data: {confirm: "Are you sure?"} %>
+          </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
