@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
+//= require bootstrap.min
 //= require smoothscroll
 //= require velocity.min
 //= require waves.min

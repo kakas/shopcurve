@@ -27,7 +27,6 @@ gem 'carrierwave', '>= 1.0.0.rc'
 gem 'mini_magick'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'bootstrap_form'
-gem 'bootstrap-sass'
 gem 'devise'
 
 group :development, :test do
