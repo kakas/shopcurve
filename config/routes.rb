@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   namespace :seller do
+    resource :shop
     resources :products
   end
 
