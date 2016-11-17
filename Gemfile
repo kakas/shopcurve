@@ -18,6 +18,7 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rails_best_practices'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -27,6 +28,7 @@ gem 'mini_magick'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'bootstrap_form'
 gem 'bootstrap-sass'
+gem 'devise'
 
 group :development, :test do
   gem 'meta_request'

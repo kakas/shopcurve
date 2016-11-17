@@ -1,13 +1,13 @@
 <section>
   <div class="container padding-top">
     <div class="col-md-6 col-md-offset-3">
-      <%= bootstrap_form_for [:seller, @product] do |f| %>
+      <%= bootstrap_form_for [:seller, product] do |f| %>
         <%= f.text_field :name %>
         <%= f.text_field :price, type: "number", min: 0 %>
         <%= f.text_field :stock, type: "number", min: 0 %>
         <%= f.text_area :description, rows: 8 %>
         <%= f.fields_for :photo do |photo_f| %>
-          <%= render_image_by(@product.photo, "thumb") %>
+          <%= render_image_by(product.photo, "thumb") %>
           <%= photo_f.file_field :image %>
         <% end %>
         <%= f.submit "Submit", class: "btn btn-primary", data: {disable_with: "Submitting..."} %>

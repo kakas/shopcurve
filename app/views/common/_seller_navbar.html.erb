@@ -5,7 +5,7 @@
 
   <div class="mobile-menu-wrapper">
     <div class="toolbar">
-      <%= link_to icon("person"), "#" %>
+      <%= link_to icon("power_settings_new"), destroy_user_session_path, method: :delete %>
       <%= link_to icon("list"), seller_products_path %>
       <div class="cart-btn">
         <a href="#">
