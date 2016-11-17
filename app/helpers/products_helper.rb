@@ -1,6 +1,6 @@
 module ProductsHelper
   def render_image_by(photo, size = nil)
-    if photo && photo.image.present?
+    if photo && photo.image?
       image_tag photo.image.url(size), class: "thumbnail"
     else
       case size
