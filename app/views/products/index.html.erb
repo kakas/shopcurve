@@ -1,0 +1,58 @@
+<!-- Slider -->
+<section class="hero-slider" data-loop="true" data-autoplay="true" data-interval="7000">
+  <div class="inner">
+    <% @products.each do |product| %>
+      <div class="slide" style="background-image: url('<%= product.image %>');">
+        <div class="container">
+          <div class="absolute from-top" style="top: 13%;">
+            <span class="h1 hidden-xs"><%= product.name %></span>
+          </div>
+          <div class="absolute text-right from-bottom" style="bottom: 13%; right: 15px;">
+            <span class="h2"><span class="text-thin">Only</span><br><strong><%= number_to_currency product.price %></strong></span><br>
+            <%= link_to shop_product_path(@shop, product), class: "btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none" do %>
+              View Offer
+              <%= render_icon("arrow_forward") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<!-- Content Wide -->
+<section class="container-fluid padding-top-3x">
+  <div class="row padding-top">
+    <div class="col-sm-12">
+      <ul class="nav-tabs text-center" role="tablist">
+        <li class="active"><a href="#best" role="tab" data-toggle="tab">Best for YOU</a></li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane transition fade scale in active" id="best">
+          <% @products.each do |product| %>
+            <div class="col-lg-3 col-sm-6">
+              <div class="shop-item">
+                <div class="shop-thumbnail">
+                  <span class="shop-label text-danger">Sale</span>
+                  <%= link_to "", shop_product_path(@shop, product), class: "item-link" %>
+                  <%= render_image_by(product, "medium") %>
+                  <%= render "shop_item_tool" %>
+                </div>
+                <div class="shop-item-details">
+                  <h3 class="shop-item-title">
+                    <%= link_to truncate(product.name, length: 35), shop_product_path(@shop, product) %>
+                  </h3>
+                  <span class="shop-item-price">
+                    <%= number_to_currency product.price %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= render "features" %>

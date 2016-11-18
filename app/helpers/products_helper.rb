@@ -1,13 +1,14 @@
 module ProductsHelper
-  def render_image_by(photo, size = nil)
-    if photo && photo.image?
-      image_tag photo.image.url(size), class: "thumbnail"
+  def render_image_by(product, size = nil)
+    if product.image && product.image.url
+      image_tag product.image.url(size), class: "thumbnail"
     else
       case size
-      when "thumb" then size = 75
-      else size = 800
+      when "thumb" then size = "75x75"
+      when "medium" then size = "500x455"
+      else size = "1920x790"
       end
-      image_tag "http://placehold.it/#{size}x#{size}&text=No Photo", class: "thumbnail"
+      image_tag "http://placehold.it/#{size}&text=No Photo", class: "thumbnail"
     end
   end
 end

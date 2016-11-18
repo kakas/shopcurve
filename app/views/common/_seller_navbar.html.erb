@@ -5,8 +5,8 @@
 
   <div class="mobile-menu-wrapper">
     <div class="toolbar">
-      <%= link_to icon("power_settings_new"), destroy_user_session_path, method: :delete %>
-      <%= link_to icon("list"), seller_products_path %>
+      <%= link_to render_icon("power_settings_new"), destroy_user_session_path, method: :delete %>
+      <%= link_to render_icon("list"), seller_products_path %>
       <div class="cart-btn">
         <a href="#">
           <i>
@@ -22,7 +22,7 @@
       <ul class="menu">
         <li>
           <%= link_to seller_products_path do %>
-            <%= icon("list") %> Products
+            <%= render_icon("list") %> Products
           <% end %>
         </li>
       </ul>

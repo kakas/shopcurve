@@ -2,7 +2,7 @@
   <div class="container padding-top">
     <%= link_to new_seller_product_path, class: "btn btn-info btn-icon-right waves-effect waves-light pull-right" do %>
       New Product
-      <%= icon("arrow_forward") %>
+      <%= render_icon("arrow_forward") %>
     <% end %>
   </div>
 </section>
@@ -25,7 +25,7 @@
         <% @products.each do |product| %>
           <tr>
             <td scope="row"><%= product.id %></td>
-            <td><%= render_image_by(product.photo, "thumb") %></td>
+            <td><%= render_image_by(product, "thumb") %></td>
             <td><%= product.name %></td>
             <td><%= number_to_currency product.price %></td>
             <td><%= product.stock %></td>
