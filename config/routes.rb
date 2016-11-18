@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   end
 
   resources :shops, only: [] do
-    resources :products, only: [:index, :show]
+    resources :products, only: [:index, :show] do
+      resources :cart_items, only: [:create]
+    end
   end
+
 
 end
