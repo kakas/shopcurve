@@ -28,6 +28,7 @@ gem 'mini_magick'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'bootstrap_form'
 gem 'devise'
+gem 'simple_enum'
 
 group :development, :test do
   gem 'meta_request'

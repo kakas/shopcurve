@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118095807) do
+ActiveRecord::Schema.define(version: 20161119065331) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -28,6 +28,44 @@ ActiveRecord::Schema.define(version: 20161118095807) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.index ["shop_id"], name: "index_carts_on_shop_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.integer  "shop_id"
+    t.string   "name",         default: ""
+    t.integer  "phone"
+    t.string   "address",      default: ""
+    t.string   "email",        default: ""
+    t.integer  "orders_count", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["phone"], name: "index_customers_on_phone"
+    t.index ["shop_id"], name: "index_customers_on_shop_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "order_id"
+    t.string   "name"
+    t.decimal  "price",      precision: 8, scale: 2
+    t.integer  "quantity"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "shop_id"
+    t.integer  "customer_id"
+    t.decimal  "total_price",    precision: 8, scale: 2, default: "0.0"
+    t.integer  "state_cd",                               default: 0
+    t.boolean  "is_paid",                                default: false
+    t.string   "payment_method",                         default: ""
+    t.string   "token"
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["shop_id"], name: "index_orders_on_shop_id"
+    t.index ["token"], name: "index_orders_on_token", unique: true
   end
 
   create_table "photos", force: :cascade do |t|
