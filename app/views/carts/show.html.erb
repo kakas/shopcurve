@@ -42,7 +42,7 @@
           <h4 class="amount"><%= number_to_currency current_cart.total_price %></h4>
           <p class="text-sm text-gray">* Note: This amount does not include costs for international shipping. You will be able to calculate shipping costs on checkout.</p>
           <%= f.submit "Update Cart", class: "btn btn-default btn-block" %>
-          <%= link_to "Checkout", "#", method: :post, class: "btn btn-primary btn-block waves-effect waves-light space-top-none" %>
+          <%= link_to "Checkout", new_shop_order_path(current_shop), class: "btn btn-primary btn-block waves-effect waves-light space-top-none" %>
         </aside>
       </div>
     </div>
