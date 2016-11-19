@@ -1,6 +1,3 @@
-;(function() {
-  window.onload = function() {
-    var preloading = document.querySelector('.page-preloading');
-    preloading.classList.add('loading-done');
-  };
-})();
+$(document).ready(function(){
+  $('body').toggleClass('loading-done');
+});

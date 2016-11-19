@@ -8,8 +8,11 @@ Rails.application.routes.draw do
     resources :products, except: [:show]
   end
 
-  resources :shops, only: [:show] do
-    resources :products, only: [:show]
+  resources :shops, only: [] do
+    resources :products, only: [:index, :show]
+    resources :cart_items, only: [:create, :destroy]
+    resource :cart, only: [:show, :update]
   end
+
 
 end

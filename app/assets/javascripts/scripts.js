@@ -54,23 +54,6 @@ jQuery(document).ready(function($) {
     e.preventDefault();
   });
 
-
-  // Page Transitions
-  if($('.page-preloading').length) {
-    $('a:not([href^="#"])').on('click', function(e) {
-      if($(this).attr('class') !== 'video-popup-btn' && $(this).attr('class') !== 'ajax-post-link' && $(this).attr('class') !== 'read-more ajax-post-link') {
-        console.log($(this).attr('class'));
-        e.preventDefault();
-        var linkUrl = $(this).attr('href');
-        $('.page-preloading').addClass('link-clicked');
-        setTimeout(function(){
-          window.open(linkUrl , '_self');
-        }, 550);
-      }
-    });
-  }
-
-
   // Animated Scroll to Top Button
   //------------------------------------------------------------------------------
   var $scrollTop = $('.scroll-to-top-btn');
@@ -433,7 +416,7 @@ jQuery(document).ready(function($) {
   if ( $heroSlider.length > 0 ) {
     $heroSlider.each( function () {
 
-      var	loop = $(this).parent().data('loop'),
+      var loop = $(this).parent().data('loop'),
         autoplay = $(this).parent().data('autoplay'),
         interval = $(this).parent().data('interval') || 3000;
 

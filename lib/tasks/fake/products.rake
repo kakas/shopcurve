@@ -14,7 +14,7 @@ namespace :fake do
         name: Faker::Lorem.sentence,
         description: Faker::Lorem.paragraph,
         price: Faker::Number.number(3),
-        stock: Faker::Number.number(3),
+        stock: Faker::Number.number(1),
       )
     end
     shop.save
