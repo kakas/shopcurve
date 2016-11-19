@@ -1,6 +1,6 @@
 <header class="navbar">
   <div class="navbar-header">
-    <%= link_to @shop.title, shop_products_path(@shop), class: "site-logo visible-desktop" %>
+    <%= link_to current_shop.title, shop_products_path(current_shop), class: "site-logo visible-desktop" %>
   </div>
 
   <!-- Mobile Menu Wrapper -->
@@ -10,7 +10,7 @@
     <div class="toolbar">
       <a href="account.html"><i class="material-icons person"></i></a>
       <div class="cart-btn">
-        <%= link_to shop_cart_path(@shop) do %>
+        <%= link_to shop_cart_path(current_shop) do %>
           <i>
             <span class="material-icons shopping_basket"></span>
             <span class="count"><%= current_cart.cart_items.size %></span>

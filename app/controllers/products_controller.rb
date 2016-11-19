@@ -1,7 +1,7 @@
 class ProductsController < BuyerController
 
   def index
-    @products = @shop.products
+    @products = current_shop.products
   end
 
   def show

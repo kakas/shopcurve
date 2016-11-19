@@ -5,7 +5,7 @@ class CartsController < BuyerController
 
   def update
     if current_cart.update(cart_params)
-      redirect_to shop_cart_path(@shop)
+      redirect_to shop_cart_path(current_shop)
     else
       render :show
     end

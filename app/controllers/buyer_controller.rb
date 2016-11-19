@@ -1,7 +1,5 @@
 class BuyerController < ApplicationController
-  before_action :set_shop
-  helper_method :current_cart
-
+  helper_method :current_shop, :current_cart
 
   protected
 
@@ -13,22 +11,21 @@ class BuyerController < ApplicationController
     end
   end
 
-  private
-
-  def set_shop
-    @shop = Shop.find(params[:shop_id])
+  def current_shop
+    @shop ||= Shop.find(params[:shop_id])
   end
 
+  private
+
   def find_cart
-    shop = Shop.find(params[:shop_id])
-    cart = shop.carts.find_by(id: session[:cart_ids].to_a)
+    cart = current_shop.carts.find_by(id: session[:cart_ids].to_a)
 
     if !cart
-      cart = shop.carts.create
+      cart = current_shop.carts.create
       session[:cart_ids] = [] if session[:cart_ids].nil?
       session[:cart_ids] << cart.id unless session[:cart_ids].include?(cart.id)
     end
-    session[:current_shop_id] = shop.id
+    session[:current_shop_id] = current_shop.id
     cart
   end
 
