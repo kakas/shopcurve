@@ -1,8 +1,6 @@
 <header class="navbar">
   <div class="navbar-header">
-    <a href="index.html" class="site-logo visible-desktop">
-      動物農莊
-    </a>
+    <%= link_to @shop.title, shop_products_path(@shop), class: "site-logo visible-desktop" %>
   </div>
 
   <!-- Mobile Menu Wrapper -->
@@ -12,12 +10,12 @@
     <div class="toolbar">
       <a href="account.html"><i class="material-icons person"></i></a>
       <div class="cart-btn">
-        <a href="shopping-cart.html">
+        <%= link_to shop_cart_path(@shop) do %>
           <i>
             <span class="material-icons shopping_basket"></span>
             <span class="count"><%= current_cart.cart_items.size %></span>
           </i>
-        </a>
+        <% end %>
       </div><!-- .cart-btn -->
       <a href="#" class="subscribe-btn"><i class="material-icons mail_outline"></i></a>
     </div><!-- .toolbar -->

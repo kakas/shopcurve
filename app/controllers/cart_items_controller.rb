@@ -1,7 +1,6 @@
-class CartItemsController < ApplicationController
+class CartItemsController < BuyerController
 
   def create
-    @shop = Shop.find(params[:shop_id])
     @product = @shop.products.find(params[:product_id])
     if !current_cart.items.include?(@product)
       current_cart.items << @product

@@ -1,7 +1,6 @@
-class ProductsController < ApplicationController
+class ProductsController < BuyerController
 
   def index
-    @shop = Shop.find(params[:shop_id])
     @products = @shop.products
   end
 
