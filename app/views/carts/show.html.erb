@@ -27,7 +27,7 @@
                 </div>
               </div>
               <% data = {confirm: "Are you sure?", toggle: "tooltip", placement: "top"} %>
-              <%= link_to cart_item_path(item_form.object), method: :delete, class: "item-remove", title: "Remove", data: data  do %>
+              <%= link_to shop_cart_item_path(@shop, item_form.object), method: :delete, class: "item-remove", title: "Remove", data: data do %>
                 <%= render_icon("remove_shopping_cart") %>
               <% end %>
             </div>
