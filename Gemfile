@@ -19,6 +19,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rails_best_practices'
+  gem 'letter_opener'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -29,6 +30,7 @@ gem 'rails-i18n', '~> 5.0.0'
 gem 'bootstrap_form'
 gem 'devise'
 gem 'simple_enum'
+gem 'roadie-rails', '~> 1.0'
 
 group :development, :test do
   gem 'meta_request'

@@ -16,7 +16,9 @@ class OrdersController < BuyerController
       @order.build_item_cache_from(current_cart)
       @order.calculate_total_price!(current_cart)
       current_cart.destroy
-      redirect_to shop_order_path(@shop, @order.token)
+      OrderMailer.notify_order_placed(current_shop, @order).deliver!
+
+      redirect_to shop_order_path(current_shop, @order.token)
     else
       render :new
     end
