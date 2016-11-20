@@ -8,11 +8,10 @@
   <%= hidden_field_tag "MerchantOrderNo", pay2go_service.merchant_order_no %>
   <%= hidden_field_tag "Amt",             pay2go_service.amt %>
   <%= hidden_field_tag "ItemDesc",        "金流測試" %>
-  <%= hidden_field_tag "TradeLimit",      300 %>
   <%= hidden_field_tag "LoginType",       0 %>
   <%= hidden_field_tag "Email",           order.customer.email %>
-  <%= hidden_field_tag "ReturnURL",       pay2go_return_shop_order_url(current_shop, order.token) %>
-  <%= hidden_field_tag "CREDIT",          1 %>
+  <%= hidden_field_tag "NotifyURL",       pay2go_notify_shop_order_url(current_shop, order.token) %>
+  <%= hidden_field_tag "VACC",            1 %>
 
-  <%= submit_tag "Credit Card", class: "btn btn-danger btn-lg" %>
+  <%= submit_tag "ATM", class: "btn btn-danger btn-lg" %>
 <% end %>

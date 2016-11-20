@@ -1,5 +1,5 @@
 class OrdersController < BuyerController
-  protect_from_forgery except: [:pay2go_return]
+  protect_from_forgery except: [:pay2go_return, :pay2go_notify]
 
   def new
     @order = Order.new
@@ -38,6 +38,21 @@ class OrdersController < BuyerController
     else
       render text: service.message
     end
+  end
+
+  def pay2go_notify
+    @order = Order.find_by_token(params[:token])
+    service = Pay2goService.new(current_shop, @order, params[:JSONData])
+
+    if service.success?
+      if !@order.is_paid?
+        @order.set_payment_method!(service.payment_method)
+        @order.pay!
+      end
+    else
+      puts service.message
+    end
+    render nothing: true, status: 200
   end
 
   private

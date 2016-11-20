@@ -43,7 +43,7 @@
         <aside>
           <h3>Cart total:</h3>
           <h4><%= number_to_currency current_cart.total_price %></h4>
-          <p class="text-sm text-gray">* Note: This amount includes costs for shipping to address you provided.</p>
+          <p class="text-sm text-danger">* Note: You can't modify order after the order is created.</p>
           <%= link_to shop_cart_path, class: "btn btn-default btn-ghost icon-left btn-block" do %>
             <%= render_icon("arrow_back") %> Back To Cart
           <% end %>

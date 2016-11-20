@@ -45,7 +45,9 @@
         <% if @order.is_paid? %>
           <p class="text-success"> You have completed you payment. </p>
         <% else %>
-          <%= render "pay_with_credit_card", order: @order %>
+          <% pay2go_service = Pay2goService.new(current_shop, @order) %>
+          <%= render "pay_with_credit_card", order: @order, pay2go_service: pay2go_service %>
+          <%= render "pay_with_atm",         order: @order, pay2go_service: pay2go_service %>
         <% end %>
       </aside>
     </div>
