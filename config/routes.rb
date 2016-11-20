@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   namespace :seller do
-    resource :shop, only: [:show, :create]
+    resource :shop, only: [:show, :create, :update]
     resources :products, except: [:show]
   end
 
@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :show]
     resources :cart_items, only: [:create, :destroy]
     resource :cart, only: [:show, :update]
+    resources :orders, only: [:new, :create, :show], param: :token do
+      post :pay2go_return,   on: :member
+      post :pay2go_customer, on: :member
+      post :pay2go_notify,   on: :member
+    end
   end
 
 

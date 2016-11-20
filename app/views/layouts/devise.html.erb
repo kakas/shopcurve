@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Shopcurve</title>
+    <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'modernizr.custom' %>
   </head>
 
   <body>
     <%= yield %>
   </body>
+
 </html>

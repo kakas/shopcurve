@@ -1,5 +1,7 @@
 class Shop < ApplicationRecord
   has_many :maintainer, class_name: "User"
+  has_many :customers
+  has_many :orders
   has_many :products
   has_one  :photo, as: :imageable, dependent: :destroy
 

@@ -13,5 +13,8 @@ module Shopcurve
     config.time_zone = 'Taipei'
     config.i18n.available_locales = [:en, :'zh-TW']
     config.i18n.default_locale = :'zh-TW'
+    config.to_prepare do
+      Devise::SessionsController.layout "devise"
+    end
   end
 end

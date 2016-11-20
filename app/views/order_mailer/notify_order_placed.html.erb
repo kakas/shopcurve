@@ -1,0 +1,45 @@
+<div class="col-md-12">
+  <div class="container padding-top">
+    <h2>
+      Checkout Link:
+      <%= link_to @order.token, shop_order_url(@shop, @order.token) %>
+    </h2>
+    <h2>Product Info</h2>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </thead>
+        <tbody>
+          <% @order.items.each do |item| %>
+            <tr>
+              <td><%= item.name %></td>
+              <td><%= item.price %></td>
+              <td><%= item.quantity %></td>
+              <td><%= item.price * item.quantity %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pull-right">
+      Total:
+      <%= number_to_currency @order.total_price %>
+    </div>
+  </div>
+
+  <div class="container padding-top">
+    <h2>Shipping Info</h2>
+    <div class="col-sm-4 padding-bottom">
+      <ul>
+        <li><%= @order.info.name %></li>
+        <li><%= @order.info.phone %></li>
+        <li><%= @order.info.address %></li>
+      </ul>
+    </div>
+  </div>
+</div>
