@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   namespace :seller do
-    resource :shop, only: [:show, :create]
+    resource :shop, only: [:show, :create, :update]
     resources :products, except: [:show]
   end
 
