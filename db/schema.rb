@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120032400) do
+ActiveRecord::Schema.define(version: 20161120070426) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -74,6 +74,9 @@ ActiveRecord::Schema.define(version: 20161120032400) do
     t.string   "token"
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
+    t.string   "bank_code",                              default: ""
+    t.string   "code_no",                                default: ""
+    t.string   "expire_time",                            default: ""
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["shop_id"], name: "index_orders_on_shop_id"
     t.index ["token"], name: "index_orders_on_token", unique: true

@@ -1,6 +1,6 @@
 class Pay2goService
   attr_reader :amt, :merchant_order_no, :time_stamp, :url
-  attr_reader :callback, :payment_method, :message
+  attr_reader :callback, :message, :payment_method, :bank_code, :code_no, :expire_time
 
   def initialize(shop, order, callback_data = nil)
     @shop = shop
@@ -11,9 +11,13 @@ class Pay2goService
       @time_stamp = order.created_at.to_i
       @url = "https://capi.pay2go.com/MPG/mpg_gateway"
     else
-      @callback = parse_callback(callback_data)
-      @payment_method = @callback["Result"]["PaymentType"]
-      @message = @callback["Message"]
+      @callback       = parse_callback(callback_data)
+      result          = @callback["Result"]
+      @message        = @callback["Message"]
+      @payment_method = result["PaymentType"]
+      @bank_code      = result["BankCode"]
+      @code_no        = result["CodeNo"]
+      @expire_time    = %Q{#{result["ExpireDate"]} #{result["ExpireTime"]}}
     end
   end
 

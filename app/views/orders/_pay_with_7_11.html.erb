@@ -12,7 +12,7 @@
   <%= hidden_field_tag "Email",           order.customer.email %>
   <%= hidden_field_tag "CustomerURL",     pay2go_customer_shop_order_url(current_shop, order.token) %>
   <%= hidden_field_tag "NotifyURL",       pay2go_notify_shop_order_url(current_shop, order.token) %>
-  <%= hidden_field_tag "VACC",            1 %>
+  <%= hidden_field_tag "CVS",             1 %>
 
-  <%= submit_tag "ATM", class: "btn btn-danger btn-lg" %>
+  <%= submit_tag "7-11", class: "btn btn-danger btn-lg" %>
 <% end %>

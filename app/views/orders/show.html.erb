@@ -44,10 +44,15 @@
         <p class="text-sm text-danger">* Test Card Number: 4000-2222-2222-2222</p>
         <% if @order.is_paid? %>
           <p class="text-success"> You have completed you payment. </p>
+        <% elsif @order.code_no? %>
+          <%= render_expire_time(@order) %>
+          <%= render_bank_code(@order) %>
+          <%= render_code_no(@order) %>
         <% else %>
           <% pay2go_service = Pay2goService.new(current_shop, @order) %>
           <%= render "pay_with_credit_card", order: @order, pay2go_service: pay2go_service %>
           <%= render "pay_with_atm",         order: @order, pay2go_service: pay2go_service %>
+          <%= render "pay_with_7_11",        order: @order, pay2go_service: pay2go_service %>
         <% end %>
       </aside>
     </div>
