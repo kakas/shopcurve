@@ -20,4 +20,13 @@ class Order < ApplicationRecord
   def calculate_total_price!(cart)
     self.update(total_price: cart.total_price)
   end
+
+  def set_payment_method!(method)
+    self.update(payment_method: method)
+  end
+
+  def pay!
+    self.update(is_paid: true)
+  end
+
 end

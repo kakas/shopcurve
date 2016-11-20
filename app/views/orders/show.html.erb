@@ -1,0 +1,53 @@
+<div class="col-md-12">
+  <div class="container padding-top">
+    <h2>Product Info</h2>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </thead>
+        <tbody>
+          <% @order.items.each do |item| %>
+            <tr>
+              <td><%= item.name %></td>
+              <td><%= item.price %></td>
+              <td><%= item.quantity %></td>
+              <td><%= item.price * item.quantity %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pull-right">
+      Total:
+      <%= number_to_currency @order.total_price %>
+    </div>
+  </div>
+
+  <div class="container padding-top">
+    <div class="col-sm-4 padding-bottom">
+      <h2>Shipping Info</h2>
+      <ul>
+        <li><%= @order.info.name %></li>
+        <li><%= @order.info.phone %></li>
+        <li><%= @order.info.address %></li>
+      </ul>
+    </div>
+    <div class="col-md-3 col-md-offset-1 col-sm-8 padding-bottom">
+      <h2>Payment Methods:</h2>
+      <aside>
+        <p class="text-sm text-danger">* Note: This is test environment.</p>
+        <p class="text-sm text-danger">* Test Card Number: 4000-2222-2222-2222</p>
+        <% if @order.is_paid? %>
+          <p class="text-success"> You have completed you payment. </p>
+        <% else %>
+          <%= render "pay_with_credit_card", order: @order %>
+        <% end %>
+      </aside>
+    </div>
+  </div>
+</div>

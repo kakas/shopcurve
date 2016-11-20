@@ -1,4 +1,5 @@
 class OrdersController < BuyerController
+  protect_from_forgery except: [:pay2go_return]
 
   def new
     @order = Order.new
@@ -21,7 +22,22 @@ class OrdersController < BuyerController
   end
 
   def show
+    @order = Order.find_by_token(params[:token])
+  end
 
+  def pay2go_return
+    @order = Order.find_by_token(params[:token])
+    service = Pay2goService.new(current_shop, @order, params[:JSONData])
+
+    if service.success?
+      if !@order.is_paid?
+        @order.set_payment_method!(service.payment_method)
+        @order.pay!
+      end
+      redirect_to shop_order_path(current_shop, @order.token)
+    else
+      render text: service.message
+    end
   end
 
   private
@@ -29,6 +45,5 @@ class OrdersController < BuyerController
   def order_params
     params.require(:order).permit(info_attributes: [:name, :phone, :address, :email])
   end
-
 
 end
