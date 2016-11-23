@@ -1,0 +1,25 @@
+<section class="container padding-bottom-3x">
+  <!-- Product Table Here -->
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th width="20%">#</th>
+          <th>Date</th>
+          <th>Name</th>
+          <th width="10%">Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= link_to order.token, seller_order_path(order) %></td>
+            <td><%= order.created_at.to_s(:long) %></td>
+            <td><%= order.info_name %></td>
+            <td><%= number_to_currency order.total_price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

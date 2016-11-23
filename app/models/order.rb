@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   has_many :items, class_name: "OrderItem"
   has_one :info, class_name: "OrderInfo"
 
+  default_scope { includes(:info) }
   accepts_nested_attributes_for :info
 
   delegate :name, :phone, :address, :email, to: :info, prefix: true
