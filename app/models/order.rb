@@ -7,6 +7,8 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :info
 
+  delegate :name, :phone, :address, :email, to: :info, prefix: true
+
   def build_item_cache_from(cart)
     cart.cart_items.each do |cart_item|
       item          = items.build
