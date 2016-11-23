@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120070426) do
+ActiveRecord::Schema.define(version: 20161123090102) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -68,8 +68,6 @@ ActiveRecord::Schema.define(version: 20161120070426) do
     t.integer  "shop_id"
     t.integer  "customer_id"
     t.decimal  "total_price",    precision: 8, scale: 2, default: "0.0"
-    t.integer  "state_cd",                               default: 0
-    t.boolean  "is_paid",                                default: false
     t.string   "payment_method",                         default: ""
     t.string   "token"
     t.datetime "created_at",                                             null: false
@@ -77,6 +75,9 @@ ActiveRecord::Schema.define(version: 20161120070426) do
     t.string   "bank_code",                              default: ""
     t.string   "code_no",                                default: ""
     t.string   "expire_time",                            default: ""
+    t.integer  "status",                                 default: 0
+    t.integer  "goods_status",                           default: 0
+    t.integer  "payment_status",                         default: 0
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["shop_id"], name: "index_orders_on_shop_id"
     t.index ["token"], name: "index_orders_on_token", unique: true

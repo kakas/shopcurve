@@ -1,5 +1,9 @@
 class Order < ApplicationRecord
   has_secure_token
+  enum status:         %i(pending confirmed completed cancelled)
+  enum goods_status:   %i(pending shipped arrived collected returned), _prefix: :goods
+  enum payment_status: %i(pending completed refunded),                 _prefix: :payment
+
   belongs_to :shop
   belongs_to :customer
   has_many :items, class_name: "OrderItem"
@@ -29,7 +33,11 @@ class Order < ApplicationRecord
   end
 
   def pay!
-    self.update(is_paid: true) unless is_paid?
+    self.payment_completed! unless payment_completed?
+  end
+
+  def is_paid?
+    payment_status == "completed"
   end
 
 end
