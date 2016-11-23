@@ -1,6 +1,6 @@
 class Pay2goService
   attr_reader :amt, :merchant_order_no, :time_stamp, :url
-  attr_reader :callback, :message, :payment_method, :bank_code, :code_no, :expire_time
+  attr_reader :message, :payment_data
 
   def initialize(shop, order, callback_data = nil)
     @shop = shop
@@ -11,13 +11,9 @@ class Pay2goService
       @time_stamp = order.created_at.to_i
       @url = "https://capi.pay2go.com/MPG/mpg_gateway"
     else
-      @callback       = parse_callback(callback_data)
-      result          = @callback["Result"]
-      @message        = @callback["Message"]
-      @payment_method = result["PaymentType"]
-      @bank_code      = result["BankCode"]
-      @code_no        = result["CodeNo"]
-      @expire_time    = %Q{#{result["ExpireDate"]} #{result["ExpireTime"]}}
+      @callback     = parse_callback(callback_data)
+      @message      = @callback["Message"]
+      @payment_data = parse_payment_data
     end
   end
 
@@ -42,6 +38,17 @@ class Pay2goService
     callback = JSON.parse(callback_data)
     callback["Result"] = JSON.parse(callback["Result"])
     callback
+  end
+
+  def parse_payment_data
+    result = @callback["Result"]
+    payment_data = {
+      payment_method: result["PaymentType"],
+      bank_code:      result["BankCode"],
+      code_no:        result["CodeNo"],
+      expire_time:    %Q{#{result["ExpireDate"]} #{result["ExpireTime"]}},
+    }
+    payment_data.delete_if { |k, v| v.blank? }
   end
 
   def mpg_string

@@ -23,12 +23,12 @@ class Order < ApplicationRecord
     self.update(total_price: cart.total_price)
   end
 
-  def set_payment_method!(method)
-    self.update(payment_method: method)
+  def set_payment_data!(data)
+    self.update(data)
   end
 
   def pay!
-    self.update(is_paid: true)
+    self.update(is_paid: true) unless is_paid?
   end
 
 end
