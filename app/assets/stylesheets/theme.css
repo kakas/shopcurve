@@ -974,15 +974,11 @@ textarea.form-control {
 }
 
 .form-group {
-  margin-bottom: 24px;
-}
-
-.form-element {
   position: relative;
   margin-bottom: 24px;
 }
 
-.form-element > i {
+.form-group > i {
   display: block;
   position: absolute;
   left: 0;
@@ -990,8 +986,7 @@ textarea.form-control {
   font-size: 20px;
 }
 
-.form-group .form-control,
-.form-element .form-control {
+.form-group .form-control {
   margin-bottom: 0;
 }
 
@@ -1015,7 +1010,7 @@ select option {
   height: 36px;
 }
 
-.form-element:before {
+.form-group:before {
   position: absolute;
   display: block;
   font-family: 'Material Icons';
@@ -1030,40 +1025,44 @@ select option {
   transition: opacity 0.3s;
 }
 
-.form-element.error .form-control {
+.form-group.has-error .form-control {
   border-color: #ef0568;
   padding-right: 40px;
 }
 
-.form-element.error:before {
+.form-group.has-error:before {
   content: "\e5c9";
   color: #ef0568;
   opacity: 1;
 }
 
-.form-element.error:focus {
+.form-group.has-error:focus {
   border-color: #ef0568;
 }
 
-.form-element.valid .form-control {
+.form-group.has-error .help-block {
+  color: #ef0568;
+}
+
+.form-group.valid .form-control {
   border-color: #a7c04d;
   padding-right: 40px;
 }
 
-.form-element.valid:before {
+.form-group.valid:before {
   content: "\e5ca";
   color: #a7c04d;
   opacity: 1;
 }
 
-.form-element.valid:focus {
+.form-group.valid:focus {
   border-color: #a7c04d;
 }
 
-.form-element.form-select:before {
+.form-group.form-select:before {
   content: "\e5c5";
   font-size: 22px;
-  margin-top: -11px;
+  margin-top: 0px;
   color: #606060;
   opacity: 1;
 }

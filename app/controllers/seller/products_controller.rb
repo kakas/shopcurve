@@ -1,6 +1,6 @@
 class Seller::ProductsController < SellerController
   before_action :shop_required!
-  before_action :set_shop, only: [:index, :create, :edit, :update, :destroy]
+  before_action :set_shop
   before_action :set_product, only: [:edit, :update, :destroy]
   layout "seller"
 

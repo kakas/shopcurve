@@ -8,14 +8,13 @@
       <%= link_to render_icon("power_settings_new"), destroy_user_session_path, method: :delete %>
       <%= link_to render_icon("store"), shop_products_path(current_user.shop) %>
       <div class="cart-btn">
-        <a href="#">
+        <%= link_to seller_orders_path do %>
           <i>
             <span class="material-icons loyalty"></span>
             <span class="count">2</span>
           </i>
-        </a>
+        <% end %>
       </div>
-
     </div>
 
     <nav class="main-navigation">

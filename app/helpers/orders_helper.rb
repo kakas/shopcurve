@@ -24,4 +24,8 @@ module OrdersHelper
     end
   end
 
+  def render_status(order, status)
+    t "order.enums.#{status}.#{order.send(status)}"
+  end
+
 end

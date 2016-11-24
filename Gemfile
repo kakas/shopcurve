@@ -29,8 +29,8 @@ gem 'mini_magick'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'bootstrap_form'
 gem 'devise'
-gem 'simple_enum'
 gem 'roadie-rails', '~> 1.0'
+gem 'awesome_rails_console'
 
 group :development, :test do
   gem 'meta_request'

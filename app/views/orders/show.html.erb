@@ -15,7 +15,7 @@
               <td><%= item.name %></td>
               <td><%= item.price %></td>
               <td><%= item.quantity %></td>
-              <td><%= item.price * item.quantity %></td>
+              <td><%= item.subtotal %></td>
             </tr>
           <% end %>
         </tbody>
@@ -32,9 +32,9 @@
     <div class="col-sm-4 padding-bottom">
       <h2>Shipping Info</h2>
       <ul>
-        <li><%= @order.info.name %></li>
-        <li><%= @order.info.phone %></li>
-        <li><%= @order.info.address %></li>
+        <li><%= @order.info_name %></li>
+        <li><%= @order.info_phone %></li>
+        <li><%= @order.info_address %></li>
       </ul>
     </div>
     <div class="col-md-3 col-md-offset-1 col-sm-8 padding-bottom">

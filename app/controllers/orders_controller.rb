@@ -30,10 +30,8 @@ class OrdersController < BuyerController
 
   def pay2go_return
     if @service.success?
-      if !@order.is_paid?
-        @order.set_payment_method!(@service.payment_method)
-        @order.pay!
-      end
+      @order.set_payment_data!(@service.payment_data)
+      @order.pay!
       redirect_to shop_order_path(current_shop, @order.token)
     else
       render text: @service.message
@@ -41,20 +39,13 @@ class OrdersController < BuyerController
   end
 
   def pay2go_customer
-    if @service.success?
-      @order.bank_code = @service.bank_code
-      @order.code_no = @service.code_no
-      @order.expire_time = @service.expire_time
-    end
+    @order.set_payment_data!(@service.payment_data) if @service.success?
     redirect_to shop_order_path(current_shop, @order.token)
   end
 
   def pay2go_notify
     if @service.success?
-      if !@order.is_paid?
-        @order.set_payment_method!(@service.payment_method)
-        @order.pay!
-      end
+      @order.pay!
     else
       puts @service.message
     end

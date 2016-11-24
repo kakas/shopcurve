@@ -1,0 +1,82 @@
+<div class="container padding-top">
+  <div class="col-md-6">
+    <%= render "common/panel", title: "Product Info" do %>
+      <table>
+        <thead>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </thead>
+        <tbody>
+          <% @order.items.each do |item| %>
+            <tr>
+              <td><%= item.name %></td>
+              <td><%= item.price %></td>
+              <td><%= item.quantity %></td>
+              <td><%= number_to_currency item.subtotal %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td colspan="3">Total:</td>
+            <td><%= number_to_currency @order.total_price %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+    <h4>Order Status</h4>
+    <%= bootstrap_form_for [:seller, @order] do |f| %>
+      <%= f.select :status,         enum_option_pairs(Order, :status),         {}, wrapper_class: "form-select" %>
+      <%= f.select :payment_status, enum_option_pairs(Order, :payment_status), {}, wrapper_class: "form-select" %>
+      <%= f.select :goods_status,   enum_option_pairs(Order, :goods_status),   {}, wrapper_class: "form-select" %>
+      <%= f.submit "Submit", class: "btn btn-primary btn-block space-top-none" %>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <%= render "common/panel", title: "Order Info" do %>
+      <table>
+        <thead>
+          <th width="30%"></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Order Number:</td>
+            <td><%= @order.token %></td>
+          </tr>
+          <tr>
+            <td>Order Date:</td>
+            <td><%= @order.created_at.to_s(:long) %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+    <%= render "common/panel", title: "Customer Info" do %>
+      <table>
+        <thead>
+          <th width="30%"></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name:</td>
+            <td><%= @order.info_name %></td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td><%= @order.info_phone %></td>
+          </tr>
+          <tr>
+            <td>Address:</td>
+            <td><%= @order.info_address %></td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td><%= @order.info_email %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
