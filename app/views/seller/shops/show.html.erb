@@ -10,9 +10,9 @@
           </div>
           <div class="col-sm-6">
             <h3>Pay2go Info:</h3>
-            <%= f.text_field :merchant_id %>
-            <%= f.text_field :hash_key %>
-            <%= f.text_field :hash_iv %>
+            <%= f.text_field :merchant_id, autocomplete: :off %>
+            <%= f.text_field :hash_key,    autocomplete: :off %>
+            <%= f.text_field :hash_iv,     autocomplete: :off %>
           </div>
         </div>
       </div>
