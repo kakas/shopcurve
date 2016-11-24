@@ -1025,19 +1025,23 @@ select option {
   transition: opacity 0.3s;
 }
 
-.form-group.error .form-control {
+.form-group.has-error .form-control {
   border-color: #ef0568;
   padding-right: 40px;
 }
 
-.form-group.error:before {
+.form-group.has-error:before {
   content: "\e5c9";
   color: #ef0568;
   opacity: 1;
 }
 
-.form-group.error:focus {
+.form-group.has-error:focus {
   border-color: #ef0568;
+}
+
+.form-group.has-error .help-block {
+  color: #ef0568;
 }
 
 .form-group.valid .form-control {
