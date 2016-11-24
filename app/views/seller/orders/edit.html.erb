@@ -40,6 +40,11 @@
     <div class="col-md-3 col-md-offset-1 col-sm-8 padding-bottom">
       <h2>Order Status:</h2>
       <aside>
+        <%= bootstrap_form_for [:seller, @order] do |f| %>
+          <%= f.select :status,         enum_option_pairs(Order, :status) %>
+          <%= f.select :payment_status, enum_option_pairs(Order, :payment_status) %>
+          <%= f.select :goods_status,   enum_option_pairs(Order, :goods_status) %>
+        <% end %>
       </aside>
     </div>
   </div>

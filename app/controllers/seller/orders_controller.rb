@@ -7,7 +7,7 @@ class Seller::OrdersController < SellerController
     @orders = @shop.orders
   end
 
-  def show
+  def edit
     @order = @shop.orders.find(params[:id])
   end
 

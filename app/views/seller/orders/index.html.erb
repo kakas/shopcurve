@@ -6,6 +6,9 @@
         <tr>
           <th width="20%">#</th>
           <th>Date</th>
+          <th>Status</th>
+          <th>Payment Status</th>
+          <th>Goods Status</th>
           <th>Name</th>
           <th width="10%">Total Price</th>
         </tr>
@@ -13,8 +16,11 @@
       <tbody>
         <% @orders.each do |order| %>
           <tr>
-            <td><%= link_to order.token, seller_order_path(order) %></td>
+            <td><%= link_to order.token, edit_seller_order_path(order) %></td>
             <td><%= order.created_at.to_s(:long) %></td>
+            <td><%= render_status(order, "status") %></td>
+            <td><%= render_status(order, "payment_status") %></td>
+            <td><%= render_status(order, "goods_status") %></td>
             <td><%= order.info_name %></td>
             <td><%= number_to_currency order.total_price %></td>
           </tr>
