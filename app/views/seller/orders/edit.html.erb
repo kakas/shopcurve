@@ -1,7 +1,6 @@
-<div class="col-md-12">
-  <div class="container padding-top">
-    <h2>Product Info</h2>
-    <div class="table-responsive">
+<div class="container padding-top">
+  <div class="col-md-6">
+    <%= render "common/panel", title: "Product Info" do %>
       <table>
         <thead>
           <th>Product Name</th>
@@ -15,37 +14,69 @@
               <td><%= item.name %></td>
               <td><%= item.price %></td>
               <td><%= item.quantity %></td>
-              <td><%= item.subtotal %></td>
+              <td><%= number_to_currency item.subtotal %></td>
             </tr>
           <% end %>
+          <tr>
+            <td colspan="3">Total:</td>
+            <td><%= number_to_currency @order.total_price %></td>
+          </tr>
         </tbody>
       </table>
-    </div>
-
-    <div class="pull-right">
-      Total:
-      <%= number_to_currency @order.total_price %>
-    </div>
+    <% end %>
+    <h4>Order Status</h4>
+    <%= bootstrap_form_for [:seller, @order] do |f| %>
+      <%= f.select :status,         enum_option_pairs(Order, :status),         {}, wrapper_class: "form-select" %>
+      <%= f.select :payment_status, enum_option_pairs(Order, :payment_status), {}, wrapper_class: "form-select" %>
+      <%= f.select :goods_status,   enum_option_pairs(Order, :goods_status),   {}, wrapper_class: "form-select" %>
+      <%= f.submit "Submit", class: "btn btn-primary btn-block space-top-none" %>
+    <% end %>
   </div>
 
-  <div class="container padding-top">
-    <div class="col-sm-4 padding-bottom">
-      <h2>Shipping Info</h2>
-      <ul>
-        <li><%= @order.info_name %></li>
-        <li><%= @order.info_phone %></li>
-        <li><%= @order.info_address %></li>
-      </ul>
-    </div>
-    <div class="col-md-3 col-md-offset-1 col-sm-8 padding-bottom">
-      <h2>Order Status:</h2>
-      <aside>
-        <%= bootstrap_form_for [:seller, @order] do |f| %>
-          <%= f.select :status,         enum_option_pairs(Order, :status),         {}, wrapper_class: "form-select" %>
-          <%= f.select :payment_status, enum_option_pairs(Order, :payment_status), {}, wrapper_class: "form-select" %>
-          <%= f.select :goods_status,   enum_option_pairs(Order, :goods_status),   {}, wrapper_class: "form-select" %>
-        <% end %>
-      </aside>
-    </div>
+  <div class="col-md-6">
+    <%= render "common/panel", title: "Order Info" do %>
+      <table>
+        <thead>
+          <th width="30%"></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Order Number:</td>
+            <td><%= @order.token %></td>
+          </tr>
+          <tr>
+            <td>Order Date:</td>
+            <td><%= @order.created_at.to_s(:long) %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+    <%= render "common/panel", title: "Customer Info" do %>
+      <table>
+        <thead>
+          <th width="30%"></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name:</td>
+            <td><%= @order.info_name %></td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td><%= @order.info_phone %></td>
+          </tr>
+          <tr>
+            <td>Address:</td>
+            <td><%= @order.info_address %></td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td><%= @order.info_email %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </div>

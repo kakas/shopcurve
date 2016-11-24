@@ -12,6 +12,10 @@ class Order < ApplicationRecord
   default_scope { includes(:info) }
   accepts_nested_attributes_for :info
 
+  validates :status,         inclusion: statuses.keys
+  validates :goods_status,   inclusion: goods_statuses.keys
+  validates :payment_status, inclusion: payment_statuses.keys
+
   delegate :name, :phone, :address, :email, to: :info, prefix: true
 
   def build_item_cache_from(cart)

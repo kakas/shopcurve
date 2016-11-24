@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :seller do
     resource :shop, only: [:show, :create, :update]
     resources :products, except: [:show]
-    resources :orders
+    resources :orders, only: [:index, :edit, :update]
   end
 
   resources :shops, only: [] do
