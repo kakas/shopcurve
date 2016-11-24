@@ -18,7 +18,7 @@ class OrdersController < BuyerController
       current_cart.destroy
       OrderMailer.notify_order_placed(current_shop, @order).deliver!
 
-      redirect_to shop_order_path(current_shop, @order.token)
+      redirect_to order_path(@order.token)
     else
       render :new
     end
@@ -32,7 +32,7 @@ class OrdersController < BuyerController
     if @service.success?
       @order.set_payment_data!(@service.payment_data)
       @order.pay!
-      redirect_to shop_order_path(current_shop, @order.token)
+      redirect_to order_path(@order.token)
     else
       render text: @service.message
     end
@@ -40,7 +40,7 @@ class OrdersController < BuyerController
 
   def pay2go_customer
     @order.set_payment_data!(@service.payment_data) if @service.success?
-    redirect_to shop_order_path(current_shop, @order.token)
+    redirect_to order_path(@order.token)
   end
 
   def pay2go_notify

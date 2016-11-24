@@ -2,7 +2,7 @@ namespace :fake do
 
   task :shop => :environment do
     Shop.delete_all
-    Shop.create(title: "better Life", email: "shrimptrain@gmail.com")
+    Shop.create(title: "better Life", email: "shrimptrain@gmail.com", subdomain: "shrimptrain")
   end
 
   task :products => :environment do

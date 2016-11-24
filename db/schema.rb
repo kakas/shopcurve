@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123090102) do
+ActiveRecord::Schema.define(version: 20161124122352) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20161123090102) do
     t.string   "merchant_id", default: ""
     t.string   "hash_key"
     t.string   "hash_iv"
+    t.string   "subdomain"
   end
 
   create_table "users", force: :cascade do |t|

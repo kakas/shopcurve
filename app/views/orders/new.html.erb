@@ -23,7 +23,7 @@
 
   <h2 class="space-top-half">Checkout Info</h2>
   <div class="row padding-top">
-    <%= bootstrap_form_for [current_shop, @order] do |f| %>
+    <%= bootstrap_form_for @order do |f| %>
       <div class="col-sm-8 padding-bottom">
         <%= f.fields_for :info do |info| %>
           <div class="row">
@@ -44,7 +44,7 @@
           <h3>Cart total:</h3>
           <h4><%= number_to_currency current_cart.total_price %></h4>
           <p class="text-sm text-danger">* Note: You can't modify order after the order is created.</p>
-          <%= link_to shop_cart_path, class: "btn btn-default btn-ghost icon-left btn-block" do %>
+          <%= link_to cart_path, class: "btn btn-default btn-ghost icon-left btn-block" do %>
             <%= render_icon("arrow_back") %> Back To Cart
           <% end %>
           <%= f.submit "Checkout", class: "btn btn-primary btn-block space-top-none" %>

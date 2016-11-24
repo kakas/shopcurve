@@ -1,5 +1,5 @@
 <div class="shop-item-tools">
-  <%= link_to shop_cart_items_path(shop, product_id: product.id), method: :post, class: "add-to-cart" do %>
+  <%= link_to cart_items_path(product_id: product.id), method: :post, class: "add-to-cart" do %>
     <em>Add to Cart</em>
     <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
       <path stroke-dasharray="19.79 19.79"

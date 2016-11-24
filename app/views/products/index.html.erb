@@ -9,7 +9,7 @@
           </div>
           <div class="absolute text-right from-bottom" style="bottom: 13%; right: 15px;">
             <span class="h2"><span class="text-thin">Only</span><br><strong><%= number_to_currency product.price %></strong></span><br>
-            <%= link_to shop_product_path(current_shop, product), class: "btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none" do %>
+            <%= link_to product_path(product), class: "btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none" do %>
               View Offer
               <%= render_icon("arrow_forward") %>
             <% end %>
@@ -34,13 +34,13 @@
               <div class="shop-item">
                 <div class="shop-thumbnail">
                   <span class="shop-label text-danger">Sale</span>
-                  <%= link_to "", shop_product_path(current_shop, product), class: "item-link" %>
+                  <%= link_to "", product_path(product), class: "item-link" %>
                   <%= render_image_by(product, "medium") %>
                   <%= render "shop_item_tool", shop: current_shop, product: product %>
                 </div>
                 <div class="shop-item-details">
                   <h3 class="shop-item-title">
-                    <%= link_to truncate(product.name, length: 35), shop_product_path(current_shop, product) %>
+                    <%= link_to truncate(product.name, length: 35), product_path(product) %>
                   </h3>
                   <span class="shop-item-price">
                     <%= number_to_currency product.price %>

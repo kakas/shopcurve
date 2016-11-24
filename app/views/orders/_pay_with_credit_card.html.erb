@@ -2,7 +2,7 @@
   <%= render "pay2go_common_fields", pay2go_service: pay2go_service %>
   <%= hidden_field_tag "Email",      order.info_email %>
   <%= hidden_field_tag "TradeLimit", 300 %>
-  <%= hidden_field_tag "ReturnURL",  pay2go_return_shop_order_url(current_shop, order.token) %>
+  <%= hidden_field_tag "ReturnURL",  pay2go_return_order_url(order.token, subdomain: subdomain) %>
   <%= hidden_field_tag "CREDIT",     1 %>
 
   <%= submit_tag "Credit Card", class: "btn btn-danger btn-lg" %>

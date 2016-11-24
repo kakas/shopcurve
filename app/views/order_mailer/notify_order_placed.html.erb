@@ -2,7 +2,7 @@
   <div class="container padding-top">
     <h2>
       Checkout Link:
-      <%= link_to @order.token, shop_order_url(@shop, @order.token) %>
+      <%= link_to @order.token, order_url(@order.token, subdomain: @shop.subdomain) %>
     </h2>
     <h2>Product Info</h2>
     <div class="table-responsive">

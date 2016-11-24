@@ -6,13 +6,13 @@ class CartItemsController < BuyerController
       current_cart.items << @product
     end
 
-    redirect_to shop_products_path(current_shop)
+    redirect_to products_path
   end
 
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to shop_cart_path(current_shop)
+    redirect_to cart_path
   end
 
 end

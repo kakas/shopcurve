@@ -1,17 +1,11 @@
 class Seller::ShopsController < SellerController
 
   def show
-    @shop = current_user.shop || Shop.new
-  end
-
-  def create
-    @shop = Shop.new(shop_params)
-
-    if @shop.save
-      current_user.update(shop_id: @shop.id)
-      redirect_to seller_shop_path
+    if current_user.shop
+      @shop = current_user.shop
     else
-      render :show
+      @shop = Shop.create(title: "enter your shop name", email: current_user.email)
+      current_user.update(shop_id: @shop.id)
     end
   end
 

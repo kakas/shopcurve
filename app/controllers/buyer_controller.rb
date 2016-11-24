@@ -1,5 +1,6 @@
 class BuyerController < ApplicationController
-  helper_method :current_shop, :current_cart
+  helper_method :current_shop, :current_cart, :subdomain
+  before_action :shop_required!
 
   protected
 
@@ -12,10 +13,22 @@ class BuyerController < ApplicationController
   end
 
   def current_shop
-    @shop ||= Shop.find(params[:shop_id])
+    @shop ||= Shop.find_by(subdomain: subdomain)
+  end
+
+  def subdomain
+    request.subdomain
   end
 
   private
+
+  def shop_required!
+    @shop = Shop.find_by(subdomain: subdomain)
+
+    if @shop.nil?
+      redirect_to root_url(subdomain: "")
+    end
+  end
 
   def find_cart
     cart = current_shop.carts.find_by(id: session[:cart_ids].to_a)
