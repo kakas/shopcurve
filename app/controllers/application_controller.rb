@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    seller_shop_path
+    if request.subdomain.present?
+      products_path
+    else
+      seller_shop_path
+    end
   end
 
 end

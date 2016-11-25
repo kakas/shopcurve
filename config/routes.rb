@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-  namespace :seller do
-    resource :shop, only: [:show, :update]
-    resources :products, except: [:show]
-    resources :orders, only: [:index, :edit, :update]
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  constraints lambda { |req| req.subdomain.blank? } do
+    namespace :seller do
+      resource :shop, only: [:show, :update]
+      resources :products, except: [:show]
+      resources :orders, only: [:index, :edit, :update]
+    end
   end
 
   constraints lambda { |req| req.subdomain.present? } do
