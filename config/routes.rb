@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
     namespace :account do
       resources :orders, only: [:index]
+      resource :user, only: [:edit, :update]
     end
   end
   root 'home#index'
