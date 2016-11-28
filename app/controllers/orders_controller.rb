@@ -4,7 +4,7 @@ class OrdersController < BuyerController
 
   def new
     @order = Order.new
-    @order.build_info
+    @order.build_info(current_user&.shipping_info)
   end
 
   def create

@@ -15,6 +15,12 @@ class User < ApplicationRecord
     end
   end
 
+  def shipping_info
+    info = slice(:name, :phone, :address, :email)
+    info.delete_if { |k, v| v.blank? }
+    info
+  end
+
   # overwrite devise email_required?
   # shop maintainer and customer registered through different way
   # shop maintainer login via email
