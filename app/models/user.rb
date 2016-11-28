@@ -6,6 +6,7 @@ class User < ApplicationRecord
     :omniauthable, :omniauth_providers => [:facebook]
 
   belongs_to :shop, optional: true
+  has_many :orders
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -13,6 +14,12 @@ class User < ApplicationRecord
       # user.name = auth.info.name   # assuming the user model has a name
       # user.image = auth.info.image # assuming the user model has an image
     end
+  end
+
+  def shipping_info
+    info = slice(:name, :phone, :address, :email)
+    info.delete_if { |k, v| v.blank? }
+    info
   end
 
   # overwrite devise email_required?

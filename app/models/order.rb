@@ -5,7 +5,8 @@ class Order < ApplicationRecord
   enum payment_status: %i(pending completed refunded),                 _prefix: :payment
 
   belongs_to :shop
-  belongs_to :customer
+  belongs_to :customer, optional: true, counter_cache: true
+  belongs_to :user,     optional: true, counter_cache: true
   has_many :items, class_name: "OrderItem"
   has_one :info, class_name: "OrderInfo"
 
@@ -17,6 +18,7 @@ class Order < ApplicationRecord
   validates :payment_status, inclusion: payment_statuses.keys
 
   delegate :name, :phone, :address, :email, to: :info, prefix: true
+  delegate :shipping_info, to: :info
 
   def build_item_cache_from(cart)
     cart.cart_items.each do |cart_item|

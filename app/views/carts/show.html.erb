@@ -41,8 +41,10 @@
           <h3 class="toolbar-title">Cart subtotal:</h3>
           <h4 class="amount"><%= number_to_currency current_cart.total_price %></h4>
           <p class="text-sm text-gray">* Note: This amount does not include costs for international shipping. You will be able to calculate shipping costs on checkout.</p>
-          <%= f.submit "Update Cart", class: "btn btn-default btn-block" %>
-          <%= link_to "Checkout", new_order_path, class: "btn btn-primary btn-block waves-effect waves-light space-top-none" %>
+          <% if current_cart.items.size > 0 %>
+            <%= f.submit "Update Cart", class: "btn btn-default btn-block" %>
+            <%= link_to "Checkout", new_order_path, class: "btn btn-primary btn-block waves-effect waves-light space-top-none" %>
+          <% end %>
         </aside>
       </div>
     </div>

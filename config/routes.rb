@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   constraints lambda { |req| req.subdomain.present? } do
+    get '/', to: 'products#index'
     resources :products, only: [:index, :show]
     resources :cart_items, only: [:create, :destroy]
     resource :cart, only: [:show, :update]
@@ -19,7 +20,10 @@ Rails.application.routes.draw do
       post :pay2go_customer, on: :member
       post :pay2go_notify,   on: :member
     end
-    get '/', to: 'products#index'
+    namespace :account do
+      resources :orders, only: [:index]
+      resource :user, only: [:edit, :update]
+    end
   end
   root 'home#index'
 

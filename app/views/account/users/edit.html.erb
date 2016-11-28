@@ -1,0 +1,9 @@
+<section class="container-fluid padding-bottom-3x">
+  <%= bootstrap_form_for [:account, current_user], url: account_user_path do |f| %>
+    <%= f.text_field :name %>
+    <%= f.text_field :phone, placeholder: "xxx" %>
+    <%= f.text_field :address %>
+    <%= f.email_field :email %>
+    <%= f.submit "Update Account Info" %>
+  <% end %>
+</section>

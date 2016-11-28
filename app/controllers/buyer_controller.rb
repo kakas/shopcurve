@@ -5,7 +5,7 @@ class BuyerController < ApplicationController
   protected
 
   def current_cart
-    if session[:current_shop_id] == params[:shop_id].to_i
+    if session[:current_shop_id] == current_shop.id
       @current_cart ||= find_cart
     else
       @current_cart = find_cart

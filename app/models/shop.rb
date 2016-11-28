@@ -1,9 +1,11 @@
 class Shop < ApplicationRecord
+
   has_many :maintainers, class_name: "User"
+  has_many :member_lists
+  has_many :members, through: :member_lists, source: :user
   has_many :customers
   has_many :orders
   has_many :products
-  has_one  :photo, as: :imageable, dependent: :destroy
   has_many :carts, dependent: :destroy
 
   validates_presence_of :title, :email
