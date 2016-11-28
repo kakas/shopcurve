@@ -8,16 +8,11 @@ class OrdersController < BuyerController
   end
 
   def create
-    @customer = current_shop.customers.find_or_create_by(phone: order_params["info_attributes"]["phone"].to_i)
-    @order = @customer.orders.build(order_params.merge(shop_id: current_shop.id))
+    @order = current_shop.orders.build(order_params)
 
     if @order.save
-      @customer.update(order_params["info_attributes"])
-      @order.build_item_cache_from(current_cart)
-      @order.calculate_total_price!(current_cart)
-      current_cart.destroy
-      OrderMailer.notify_order_placed(current_shop, @order).deliver!
-
+      session[:cart_ids].delete(current_cart.id)
+      OrderPlacingService.new(current_user, current_cart, @order).place_order!
       redirect_to order_path(@order.token)
     else
       render :new
