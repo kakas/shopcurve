@@ -3,8 +3,12 @@ class OrdersController < BuyerController
   before_action :set_pay2go_service, only: [:pay2go_return, :pay2go_customer, :pay2go_notify]
 
   def new
-    @order = Order.new
-    @order.build_info(current_user&.shipping_info)
+    if current_cart.items.size > 0
+      @order = Order.new
+      @order.build_info(current_user&.shipping_info)
+    else
+      redirect_to products_path
+    end
   end
 
   def create
