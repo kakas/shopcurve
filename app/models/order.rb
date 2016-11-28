@@ -5,7 +5,8 @@ class Order < ApplicationRecord
   enum payment_status: %i(pending completed refunded),                 _prefix: :payment
 
   belongs_to :shop
-  belongs_to :customer, optional: true
+  belongs_to :customer, optional: true, counter_cache: true
+  belongs_to :user,     optional: true, counter_cache: true
   has_many :items, class_name: "OrderItem"
   has_one :info, class_name: "OrderInfo"
 

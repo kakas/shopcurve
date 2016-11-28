@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125092021) do
+ActiveRecord::Schema.define(version: 20161126133314) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -87,9 +87,11 @@ ActiveRecord::Schema.define(version: 20161125092021) do
     t.integer  "status",                                 default: 0
     t.integer  "goods_status",                           default: 0
     t.integer  "payment_status",                         default: 0
+    t.integer  "user_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["shop_id"], name: "index_orders_on_shop_id"
     t.index ["token"], name: "index_orders_on_token", unique: true
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "photos", force: :cascade do |t|

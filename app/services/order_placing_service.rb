@@ -13,6 +13,17 @@ class OrderPlacingService
     @order.calculate_total_price!(@cart)
     @cart.destroy
     OrderMailer.notify_order_placed(@order).deliver!
+    sync_info_to_buyer
+  end
+
+  private
+
+  def sync_info_to_buyer
+    if !@buyer
+      @buyer = @shop.customers.find_or_create_by(phone: @order_info[:phone])
+    end
+    @buyer.update!(@order_info)
+    @buyer.orders << @order
   end
 
 end
