@@ -5,6 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       if @user.persisted?
         register_current_user_as_member
+        associate_order_to_current_user
         sign_in_and_redirect @user, :event => :authentication
         set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
       else
@@ -27,7 +28,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def register_current_user_as_member
     @shop = Shop.find_by(subdomain: subdomain)
-    @shop.members << @user if @shop
+    if @shop && !@shop.members.include?(@user)
+      @shop.members << @user
+    end
+  end
+
+  def associate_order_to_current_user
+    order = Order.find_by(token: session[:order_token])
+    session.delete(:order_token)
+    @user.orders << order if order
   end
 
 end

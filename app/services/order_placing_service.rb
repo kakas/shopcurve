@@ -22,7 +22,7 @@ class OrderPlacingService
     if !@buyer
       @buyer = @shop.customers.find_or_create_by(phone: @order_info[:phone])
     end
-    @buyer.update!(@order_info)
+    @buyer.update(@order_info)
     @buyer.orders << @order
   end
 

@@ -13,6 +13,7 @@ class OrdersController < BuyerController
     if @order.save
       session[:cart_ids].delete(current_cart.id)
       OrderPlacingService.new(current_user, current_cart, @order).place_order!
+      session[:order_token] = @order.token if !current_user
       redirect_to order_path(@order.token)
     else
       render :new
