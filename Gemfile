@@ -36,6 +36,7 @@ gem 'awesome_rails_console'
 gem 'figaro'
 gem 'mailgun_rails'
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :development, :test do
   gem 'sqlite3'
