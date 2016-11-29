@@ -30,8 +30,8 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-set :linked_files, %w{config/database.yml config/secrets.yml}
-set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_files, %w{config/database.yml config/secrets.yml config/application.yml}
+set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
@@ -75,8 +75,9 @@ namespace :deploy do
   desc 'Upload to shared/config'
   task :upload do
     on roles (:app) do
-      upload! "config/database.yml", "#{shared_path}/config/database.yml"
-      upload! "config/secrets.yml",  "#{shared_path}/config/secrets.yml"
+      upload! "config/database.yml",    "#{shared_path}/config/database.yml"
+      upload! "config/secrets.yml",     "#{shared_path}/config/secrets.yml"
+      upload! "config/application.yml", "#{shared_path}/config/application.yml"
     end
   end
 
