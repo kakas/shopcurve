@@ -22,7 +22,7 @@ class Seller::ShopsController < SellerController
   private
 
   def shop_params
-    params.require(:shop).permit(:title, :email, :merchant_id, :hash_key, :hash_iv)
+    params.require(:shop).permit(:title, :email, :subdomain, :merchant_id, :hash_key, :hash_iv)
   end
 
 end

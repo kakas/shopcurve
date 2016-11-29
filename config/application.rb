@@ -16,5 +16,6 @@ module Shopcurve
     config.to_prepare do
       Devise::SessionsController.layout "devise"
     end
+    config.active_job.queue_adapter = :delayed_job
   end
 end
