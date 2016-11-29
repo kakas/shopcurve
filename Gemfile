@@ -34,6 +34,8 @@ gem 'omniauth-facebook'
 gem 'roadie-rails', '~> 1.0'
 gem 'awesome_rails_console'
 gem 'figaro'
+gem 'mailgun_rails'
+gem 'delayed_job_active_record'
 
 group :development, :test do
   gem 'sqlite3'
@@ -46,11 +48,12 @@ end
 
 gem 'therubyracer', platforms: :ruby
 group :development do
-  gem 'capistrano',         '~> 3.6.0', require: false
-  gem 'capistrano-rvm',     '~> 0.1',   require: false
-  gem 'capistrano-rails',   '~> 1.1.7', require: false
-  gem 'capistrano-bundler', '~> 1.1.4', require: false
-  gem 'capistrano3-puma',   '~> 1.2.1', require: false
+  gem 'capistrano',              '~> 3.6.0', require: false
+  gem 'capistrano-rvm',          '~> 0.1',   require: false
+  gem 'capistrano-rails',        '~> 1.1.7', require: false
+  gem 'capistrano-bundler',      '~> 1.1.4', require: false
+  gem 'capistrano3-puma',        '~> 1.2.1', require: false
+  gem 'capistrano3-delayed-job', '~> 1.0',   require: false
 end
 
 group :production do

@@ -12,7 +12,7 @@ class OrderPlacingService
     @order.build_item_cache_from(@cart)
     @order.calculate_total_price!(@cart)
     @cart.destroy
-    OrderMailer.notify_order_placed(@order).deliver!
+    OrderMailer.delay.notify_order_placed(@order)
     sync_info_to_buyer
   end
 
