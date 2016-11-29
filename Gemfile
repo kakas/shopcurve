@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
+ruby '2.3.0'
+
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -35,9 +36,23 @@ gem 'awesome_rails_console'
 gem 'figaro'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'meta_request'
   gem 'bullet'
   gem 'rails-erd'
   gem 'pry-byebug'
   gem 'faker'
+end
+
+gem 'therubyracer', platforms: :ruby
+group :development do
+  gem 'capistrano',         '~> 3.6.0', require: false
+  gem 'capistrano-rvm',     '~> 0.1',   require: false
+  gem 'capistrano-rails',   '~> 1.1.7', require: false
+  gem 'capistrano-bundler', '~> 1.1.4', require: false
+  gem 'capistrano3-puma',   '~> 1.2.1', require: false
+end
+
+group :production do
+  gem 'mysql2'
 end
