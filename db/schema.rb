@@ -12,25 +12,25 @@
 
 ActiveRecord::Schema.define(version: 20161129073253) do
 
-  create_table "cart_items", force: :cascade do |t|
+  create_table "cart_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "cart_id"
     t.integer  "product_id"
     t.integer  "quantity",   default: 1
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
-    t.index ["product_id"], name: "index_cart_items_on_product_id"
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+    t.index ["product_id"], name: "index_cart_items_on_product_id", using: :btree
   end
 
-  create_table "carts", force: :cascade do |t|
+  create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "shop_id"
     t.integer  "cart_items_count", default: 0
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.index ["shop_id"], name: "index_carts_on_shop_id"
+    t.index ["shop_id"], name: "index_carts_on_shop_id", using: :btree
   end
 
-  create_table "customers", force: :cascade do |t|
+  create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "shop_id"
     t.string   "name",         default: ""
     t.integer  "phone"
@@ -39,15 +39,15 @@ ActiveRecord::Schema.define(version: 20161129073253) do
     t.integer  "orders_count", default: 0
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.index ["phone"], name: "index_customers_on_phone"
-    t.index ["shop_id"], name: "index_customers_on_shop_id"
+    t.index ["phone"], name: "index_customers_on_phone", using: :btree
+    t.index ["shop_id"], name: "index_customers_on_shop_id", using: :btree
   end
 
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
-    t.text     "last_error"
+  create_table "delayed_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+    t.integer  "priority",                 default: 0, null: false
+    t.integer  "attempts",                 default: 0, null: false
+    t.text     "handler",    limit: 65535,             null: false
+    t.text     "last_error", limit: 65535
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
@@ -55,19 +55,19 @@ ActiveRecord::Schema.define(version: 20161129073253) do
     t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
-  create_table "member_lists", force: :cascade do |t|
+  create_table "member_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "shop_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shop_id"], name: "index_member_lists_on_shop_id"
-    t.index ["user_id"], name: "index_member_lists_on_user_id"
+    t.index ["shop_id"], name: "index_member_lists_on_shop_id", using: :btree
+    t.index ["user_id"], name: "index_member_lists_on_user_id", using: :btree
   end
 
-  create_table "order_infos", force: :cascade do |t|
+  create_table "order_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "order_id"
     t.string   "name",       default: ""
     t.integer  "phone"
@@ -75,20 +75,20 @@ ActiveRecord::Schema.define(version: 20161129073253) do
     t.string   "email",      default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.index ["order_id"], name: "index_order_infos_on_order_id"
+    t.index ["order_id"], name: "index_order_infos_on_order_id", using: :btree
   end
 
-  create_table "order_items", force: :cascade do |t|
+  create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "order_id"
     t.string   "name"
     t.decimal  "price",      precision: 8, scale: 2
     t.integer  "quantity"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "shop_id"
     t.integer  "customer_id"
     t.decimal  "total_price",    precision: 8, scale: 2, default: "0.0"
@@ -103,33 +103,33 @@ ActiveRecord::Schema.define(version: 20161129073253) do
     t.integer  "goods_status",                           default: 0
     t.integer  "payment_status",                         default: 0
     t.integer  "user_id"
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
-    t.index ["shop_id"], name: "index_orders_on_shop_id"
-    t.index ["token"], name: "index_orders_on_token", unique: true
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+    t.index ["shop_id"], name: "index_orders_on_shop_id", using: :btree
+    t.index ["token"], name: "index_orders_on_token", unique: true, using: :btree
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
-  create_table "photos", force: :cascade do |t|
+  create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string   "image",          default: ""
     t.string   "imageable_type"
     t.integer  "imageable_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.index ["imageable_type", "imageable_id"], name: "index_photos_on_imageable_type_and_imageable_id"
+    t.index ["imageable_type", "imageable_id"], name: "index_photos_on_imageable_type_and_imageable_id", using: :btree
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "shop_id"
     t.string   "name"
-    t.text     "description"
-    t.decimal  "price",       precision: 8, scale: 2
-    t.integer  "stock",                               default: 0
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.index ["shop_id"], name: "index_products_on_shop_id"
+    t.text     "description", limit: 65535
+    t.decimal  "price",                     precision: 8, scale: 2
+    t.integer  "stock",                                             default: 0
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
+    t.index ["shop_id"], name: "index_products_on_shop_id", using: :btree
   end
 
-  create_table "shops", force: :cascade do |t|
+  create_table "shops", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string   "title",       default: ""
     t.string   "email",       default: ""
     t.datetime "created_at",               null: false
@@ -138,10 +138,10 @@ ActiveRecord::Schema.define(version: 20161129073253) do
     t.string   "hash_key"
     t.string   "hash_iv"
     t.string   "subdomain"
-    t.index ["subdomain"], name: "index_shops_on_subdomain"
+    t.index ["subdomain"], name: "index_shops_on_subdomain", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -161,10 +161,10 @@ ActiveRecord::Schema.define(version: 20161129073253) do
     t.string   "address",                default: ""
     t.integer  "phone"
     t.integer  "orders_count",           default: 0
-    t.index ["email"], name: "index_users_on_email"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["shop_id"], name: "index_users_on_shop_id"
-    t.index ["uid"], name: "index_users_on_uid"
+    t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["shop_id"], name: "index_users_on_shop_id", using: :btree
+    t.index ["uid"], name: "index_users_on_uid", using: :btree
   end
 
 end
