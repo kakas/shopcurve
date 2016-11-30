@@ -1,9 +1,9 @@
 set :stage, :production
 set :branch, :master
 
-role :app, %w(deploy@188.166.186.89)
-role :web, %w(deploy@188.166.186.89)
-role :db, %w(deploy@188.166.186.89)
+role :app, %w(deploy@128.199.158.124)
+role :web, %w(deploy@128.199.158.124)
+role :db, %w(deploy@128.199.158.124)
 
 set :rails_env, "production"
 set :puma_env, "production"
