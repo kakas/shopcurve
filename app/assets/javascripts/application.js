@@ -20,5 +20,4 @@
 //= require nouislider.min
 //= require jquery_ujs
 //= require turbolinks
-//= require page-preloading
 //= require scripts
