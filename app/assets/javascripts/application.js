@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require bootstrap.min
-//= require smoothscroll
 //= require velocity.min
 //= require waves.min
 //= require icheck.min
