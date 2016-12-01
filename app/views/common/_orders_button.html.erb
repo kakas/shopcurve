@@ -2,8 +2,8 @@
   <%= link_to seller_orders_path do %>
     <i>
       <span class="material-icons loyalty"></span>
-      <% if current_user.shop.pending_orders_size > 0 %>
-        <span class="count"><%= current_user.shop.pending_orders_size %></span>
+      <% if current_shop.pending_orders_size > 0 %>
+        <span class="count"><%= current_shop.pending_orders_size %></span>
       <% end %>
     </i>
   <% end %>

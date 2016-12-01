@@ -6,7 +6,7 @@
   <div class="mobile-menu-wrapper">
     <div class="toolbar">
       <%= link_to render_icon("power_settings_new"), destroy_user_session_path, method: :delete %>
-      <%= link_to render_icon("store"), products_url(subdomain: current_user.shop.subdomain) %>
+      <%= link_to render_icon("store"), products_url(subdomain: current_shop.subdomain) %>
       <%= render "common/orders_button" %>
     </div>
 

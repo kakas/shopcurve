@@ -1,11 +1,10 @@
 class Seller::ProductsController < SellerController
   before_action :shop_required!
-  before_action :set_shop
   before_action :set_product, only: [:edit, :update, :destroy]
   layout "seller"
 
   def index
-    @products = @shop.products
+    @products = current_shop.products
   end
 
   def new
@@ -14,7 +13,7 @@ class Seller::ProductsController < SellerController
   end
 
   def create
-    @product = @shop.products.build(product_params)
+    @product = current_shop.products.build(product_params)
 
     if @product.save
       redirect_to seller_products_path
@@ -45,17 +44,13 @@ class Seller::ProductsController < SellerController
   private
 
   def shop_required!
-    if current_user.shop.blank?
+    if current_shop.blank?
       redirect_to seller_shop_path
     end
   end
 
-  def set_shop
-    @shop = current_user.shop
-  end
-
   def set_product
-    @product = @shop.products.find(params[:id])
+    @product = current_shop.products.find(params[:id])
   end
 
   def product_params
