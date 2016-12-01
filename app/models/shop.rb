@@ -12,6 +12,10 @@ class Shop < ApplicationRecord
 
   before_create :set_subdomain
 
+  def pending_orders_size
+    orders.pending.size
+  end
+
   private
 
   def set_subdomain

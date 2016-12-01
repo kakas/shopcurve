@@ -6,15 +6,8 @@
   <div class="mobile-menu-wrapper">
     <div class="toolbar">
       <%= link_to render_icon("power_settings_new"), destroy_user_session_path, method: :delete %>
-      <%= link_to render_icon("store"), products_url(subdomain: current_user.shop.subdomain) %>
-      <div class="cart-btn">
-        <%= link_to seller_orders_path do %>
-          <i>
-            <span class="material-icons loyalty"></span>
-            <span class="count">2</span>
-          </i>
-        <% end %>
-      </div>
+      <%= link_to render_icon("store"), products_url(subdomain: current_shop.subdomain) %>
+      <%= render "common/orders_button" %>
     </div>
 
     <nav class="main-navigation">

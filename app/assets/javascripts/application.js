@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require bootstrap.min
-//= require smoothscroll
 //= require velocity.min
 //= require waves.min
 //= require icheck.min
@@ -21,5 +20,4 @@
 //= require nouislider.min
 //= require jquery_ujs
 //= require turbolinks
-//= require page-preloading
 //= require scripts

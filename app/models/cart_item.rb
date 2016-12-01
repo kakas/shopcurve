@@ -6,6 +6,8 @@ class CartItem < ApplicationRecord
   delegate :price, to: :product
   delegate :stock, to: :product
 
+  default_scope { includes(:product) }
+
   validates_numericality_of :quantity, less_than_or_equal_to: :stock
   validates_numericality_of :quantity, greater_than_or_equal_to: 1
 

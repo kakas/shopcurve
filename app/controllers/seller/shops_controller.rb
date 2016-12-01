@@ -1,8 +1,8 @@
 class Seller::ShopsController < SellerController
 
   def show
-    if current_user.shop
-      @shop = current_user.shop
+    if current_shop
+      @shop = current_shop
     else
       @shop = Shop.create(title: "enter your shop name", email: current_user.email)
       current_user.update(shop_id: @shop.id)
@@ -10,9 +10,7 @@ class Seller::ShopsController < SellerController
   end
 
   def update
-    @shop = current_user.shop
-
-    if @shop.update(shop_params)
+    if current_shop.update(shop_params)
       redirect_to seller_shop_path
     else
       render :show

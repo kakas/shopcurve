@@ -1,11 +1,10 @@
 class Seller::OrdersController < SellerController
   before_action :shop_required!
-  before_action :set_shop
   before_action :set_order, only: [:edit, :update]
   layout "seller"
 
   def index
-    @orders = @shop.orders
+    @orders = current_shop.orders
   end
 
   def edit
@@ -22,17 +21,13 @@ class Seller::OrdersController < SellerController
   private
 
   def shop_required!
-    if current_user.shop.blank?
+    if current_shop.blank?
       redirect_to seller_shop_path
     end
   end
 
-  def set_shop
-    @shop = current_user.shop
-  end
-
   def set_order
-    @order = @shop.orders.find(params[:id])
+    @order = current_shop.orders.find(params[:id])
   end
 
   def order_params

@@ -46,6 +46,7 @@ group :development, :test do
   gem 'rails-erd'
   gem 'pry-byebug'
   gem 'faker'
+  gem 'bullet'
 end
 
 gem 'therubyracer', platforms: :ruby

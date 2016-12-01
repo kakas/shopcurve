@@ -6,10 +6,8 @@
         <tr>
           <th width="20%">#</th>
           <th>Date</th>
+          <th>Code</th>
           <th>Status</th>
-          <th>Payment Status</th>
-          <th>Goods Status</th>
-          <th>Name</th>
           <th width="10%">Total Price</th>
         </tr>
       </thead>
@@ -18,10 +16,15 @@
           <tr>
             <td><%= link_to order.token, order_path(order.token) %></td>
             <td><%= order.created_at.to_s(:long) %></td>
-            <td><%= render_status(order, "status") %></td>
-            <td><%= render_status(order, "payment_status") %></td>
-            <td><%= render_status(order, "goods_status") %></td>
-            <td><%= order.info_name %></td>
+            <td>
+              Bank Code: <%= order.bank_code %> <br>
+              Code No: <%= order.code_no %> <br>
+              Expire Time: <%= order.expire_time %> <br>
+            </td>
+            <td>
+              <%= render_status(order, "payment_status") %> <br>
+              <%= render_status(order, "goods_status") %>
+            </td>
             <td><%= number_to_currency order.total_price %></td>
           </tr>
         <% end %>
