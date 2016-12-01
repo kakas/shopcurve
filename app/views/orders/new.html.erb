@@ -11,7 +11,10 @@
       <tbody>
         <% current_cart.cart_items.each do |cart_item| %>
           <tr>
-            <td><%= cart_item.name %></td>
+            <td>
+              <%= cart_item.name %>
+              <%= render_image_by(cart_item.product, "thumb") %>
+            </td>
             <td><%= cart_item.price %></td>
             <td><%= cart_item.quantity %></td>
             <td><%= cart_item.price * cart_item.quantity %></td>

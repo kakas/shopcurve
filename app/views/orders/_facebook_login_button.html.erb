@@ -1,5 +1,5 @@
-<p class="text-sm text-danger">* Note: Login as member for save your order.</p>
 <% if !current_user %>
+  <p class="text-sm text-danger">* Note: Login as member for save your order.</p>
   <%= link_to user_facebook_omniauth_authorize_path, class: "social-signup-btn ssb-facebook" do %>
     <i class="socicon-facebook"></i>
     <span>Signup with Facebook</span>
