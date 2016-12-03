@@ -4,7 +4,7 @@ class Seller::ProductsController < SellerController
   layout "seller"
 
   def index
-    @products = current_shop.products
+    @products = current_shop.products.page params[:page]
   end
 
   def new

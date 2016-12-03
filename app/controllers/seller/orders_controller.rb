@@ -4,7 +4,7 @@ class Seller::OrdersController < SellerController
   layout "seller"
 
   def index
-    @orders = current_shop.orders
+    @orders = current_shop.orders.page params[:page]
   end
 
   def edit
