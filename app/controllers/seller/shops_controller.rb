@@ -1,5 +1,7 @@
 class Seller::ShopsController < SellerController
 
+  add_breadcrumb "Shop Info", :seller_shop_path
+
   def show
     if current_shop
       @shop = current_shop

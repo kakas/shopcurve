@@ -39,6 +39,7 @@ gem 'mailgun_rails'
 gem 'delayed_job_active_record'
 gem 'daemons' # for delayed_job
 gem 'kaminari'
+gem 'breadcrumbs_on_rails'
 
 group :development, :test do
   gem 'sqlite3'

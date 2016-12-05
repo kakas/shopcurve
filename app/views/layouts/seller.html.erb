@@ -12,7 +12,7 @@
       <%= render "common/seller_navbar" %>
       <main class="content-wrapper">
         <section class="container padding-top-3x">
-          <h1 class="space-top-half tablet-center">Bread Crumbs Here > Products</h1>
+          <%= render_breadcrumbs :separator => ' > ' %>
         </section>
         <%= yield %>
         <%= render "common/footer" %>

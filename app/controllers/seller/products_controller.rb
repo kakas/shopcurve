@@ -3,6 +3,8 @@ class Seller::ProductsController < SellerController
   before_action :set_product, only: [:edit, :update, :destroy]
   layout "seller"
 
+  add_breadcrumb "Products", :seller_products_path
+
   def index
     @products = current_shop.products.page params[:page]
   end
@@ -10,6 +12,7 @@ class Seller::ProductsController < SellerController
   def new
     @product = Product.new
     @photo = @product.build_photo
+    add_breadcrumb "New Product", new_seller_product_path
   end
 
   def create
@@ -25,6 +28,7 @@ class Seller::ProductsController < SellerController
 
   def edit
     @photo = @product.photo || @product.build_photo
+    add_breadcrumb "Edit Product", edit_seller_product_path(@product)
   end
 
   def update
