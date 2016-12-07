@@ -13,4 +13,13 @@ module ApplicationHelper
     end
   end
 
+  def popup_flash_message
+    flash_messages = []
+    flash.each do |type, msg|
+      text = "<script>toastr.#{type}('#{msg}');</script>"
+      flash_messages << text.html_safe if type && msg
+    end
+    flash_messages.join("\n").html_safe
+  end
+
 end

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require bootstrap.min
+//= require toastr.min
 //= require velocity.min
 //= require waves.min
 //= require icheck.min
