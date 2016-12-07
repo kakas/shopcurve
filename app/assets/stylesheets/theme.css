@@ -952,20 +952,20 @@ address {
 }
 
 .form-control::-moz-placeholder {
-  color: #606060;
+  color: #afafaf;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #606060;
+  color: #afafaf;
 }
 
 .form-control::-webkit-input-placeholder {
-  color: #606060;
+  color: #afafaf;
 }
 
 .form-control.placeholder {
-  color: #606060;
+  color: #afafaf;
 }
 
 textarea.form-control {

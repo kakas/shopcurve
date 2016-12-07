@@ -18,6 +18,7 @@ class OrdersController < BuyerController
       session[:cart_ids].delete(current_cart.id)
       OrderPlacingService.new(current_user, current_cart, @order).place_order!
       session[:order_token] = @order.token if !current_user
+      flash[:success] = "訂單建立成功"
       redirect_to order_path(@order.token)
     else
       render :new
@@ -32,6 +33,7 @@ class OrdersController < BuyerController
     if @service.success?
       @order.set_payment_data!(@service.payment_data)
       @order.pay!
+      flash[:success] = "恭喜你成功結帳！"
       redirect_to order_path(@order.token)
     else
       render text: @service.message

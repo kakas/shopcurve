@@ -19,6 +19,7 @@ class Seller::ProductsController < SellerController
     @product = current_shop.products.build(product_params)
 
     if @product.save
+      flash[:success] = "產品建立成功"
       redirect_to seller_products_path
     else
       @photo = @product.build_photo
@@ -33,6 +34,7 @@ class Seller::ProductsController < SellerController
 
   def update
     if @product.update(product_params)
+      flash[:success] = "產品更新成功"
       redirect_to seller_products_path
     else
       @photo = @product.photo || @product.build_photo
@@ -42,6 +44,7 @@ class Seller::ProductsController < SellerController
 
   def destroy
     @product.destroy
+    flash[:warning] = "#{@product.name}已被刪除"
     redirect_to seller_products_path
   end
 
