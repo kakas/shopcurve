@@ -6,6 +6,7 @@ class Account::UsersController < BuyerController
 
   def update
     if current_user.update(user_params)
+      flash[:success] = "成功更新個人資料"
       redirect_to products_path
     else
       render :edit

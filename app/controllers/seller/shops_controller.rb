@@ -1,5 +1,7 @@
 class Seller::ShopsController < SellerController
 
+  add_breadcrumb "Shop Info", :seller_shop_path
+
   def show
     if current_shop
       @shop = current_shop
@@ -11,6 +13,7 @@ class Seller::ShopsController < SellerController
 
   def update
     if current_shop.update(shop_params)
+      flash[:success] = "更新成功"
       redirect_to seller_shop_path
     else
       render :show

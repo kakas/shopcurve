@@ -952,20 +952,20 @@ address {
 }
 
 .form-control::-moz-placeholder {
-  color: #606060;
+  color: #afafaf;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #606060;
+  color: #afafaf;
 }
 
 .form-control::-webkit-input-placeholder {
-  color: #606060;
+  color: #afafaf;
 }
 
 .form-control.placeholder {
-  color: #606060;
+  color: #afafaf;
 }
 
 textarea.form-control {
@@ -6155,7 +6155,7 @@ img.mfp-img {
 .pagination .page-numbers {
   display: inline-block;
   color: #606060;
-  margin: 0 24px 12px 0;
+  margin: 0 24px 12px 24px;
 }
 
 .pagination .page-numbers a, .pagination .page-numbers span {
@@ -6188,6 +6188,7 @@ img.mfp-img {
 .pagination .pager a {
   color: #606060;
   text-decoration: none;
+  margin: 5px 5px;
 }
 
 .pagination .pager a:hover {

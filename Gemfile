@@ -37,7 +37,9 @@ gem 'awesome_rails_console'
 gem 'figaro'
 gem 'mailgun_rails'
 gem 'delayed_job_active_record'
-gem 'daemons'
+gem 'daemons' # for delayed_job
+gem 'kaminari'
+gem 'breadcrumbs_on_rails'
 
 group :development, :test do
   gem 'sqlite3'
@@ -46,7 +48,6 @@ group :development, :test do
   gem 'rails-erd'
   gem 'pry-byebug'
   gem 'faker'
-  gem 'bullet'
 end
 
 gem 'therubyracer', platforms: :ruby

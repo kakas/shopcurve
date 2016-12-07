@@ -4,20 +4,21 @@
     <title>Shopcurve</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'modernizr.custom' %>
   </head>
 
   <body>
+    <%= popup_flash_message %>
     <div class="page-wrapper">
       <%= render "common/seller_navbar" %>
       <main class="content-wrapper">
         <section class="container padding-top-3x">
-          <h1 class="space-top-half tablet-center">Bread Crumbs Here > Products</h1>
+          <%= render_breadcrumbs :separator => ' > ' %>
         </section>
         <%= yield %>
         <%= render "common/footer" %>
       </main>
     </div>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

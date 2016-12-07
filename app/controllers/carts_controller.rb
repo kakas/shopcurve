@@ -5,6 +5,7 @@ class CartsController < BuyerController
 
   def update
     if current_cart.update(cart_params)
+      flash[:success] = "成功更新購物車"
       redirect_to cart_path
     else
       render :show

@@ -4,7 +4,7 @@
  * Theme Custom Scripts
  */
 
-jQuery(document).ready(function($) {
+jQuery(document).on("turbolinks:load", function() {
   'use strict';
 
   // Check if Page Scrollbar is visible
