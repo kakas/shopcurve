@@ -1,0 +1,6 @@
+<% if current_shop.valid? %>
+  Turbolinks.clearCache();
+  Turbolinks.visit("<%= seller_shop_path %>");
+<% else %>
+  $("form").html('<%= j render "form" %>');
+<% end %>
