@@ -16,6 +16,7 @@ namespace :fake do
         description: Faker::Lorem.paragraph,
         price: Faker::Number.number(3),
         stock: 10,
+        video: "https://www.youtube.com/embed/8cMhQ_teEoY",
       )
     end
     shop.save

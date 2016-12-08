@@ -7,7 +7,7 @@ class CartItemsController < BuyerController
       current_cart.items << @product
     end
 
-    redirect_to products_path
+    redirect_to :back
   end
 
   def destroy

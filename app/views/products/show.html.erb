@@ -1,0 +1,91 @@
+<section class="fw-section bg-gray padding-top-3x">
+  <div class="container padding-top">
+    <div class="product-gallery">
+      <ul class="product-gallery-preview">
+        <li class="current"><%= render_image_by(@product) %></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="fw-section bg-gray padding-bottom-3x">
+  <div class="container">
+    <div class="product-info padding-top-2x text-center">
+      <h1 class="h2 space-bottom-half"><%= @product.name %></h1>
+      <h2><%= number_to_currency(@product.price) %></h2>
+      <p class="text-sm text-gray"><%= @product.description %></p>
+      <%= render "vote_starts" %>
+      <div class="product-tools shop-item">
+        <%= render "shop_item_tool", shop: current_shop, product: @product %>
+      </div>
+      <div class="product-share">
+        <span>Share this product: </span>
+        <%= render "social_share_button" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container padding-top-2x">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <!-- Nav Tabs -->
+      <ul class="nav-tabs text-center" role="tablist">
+        <li class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
+        <li><a href="#additional" role="tab" data-toggle="tab"><%= render_icon("do_not_disturb_alt") %> Additional Info</a></li>
+        <li><a href="#reviews" role="tab" data-toggle="tab"><%= render_icon("do_not_disturb_alt") %> Reviews <sup>3</sup></a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane transition fade in active" id="description">
+          <div class="row space-top">
+            <div class="col-md-6 space-bottom">
+              <div class="embed-responsive embed-responsive-16by9">
+                <%= content_tag :iframe, "", src: @product.video, allowfullscreen: true %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <%= @product.description %>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane transition fade" id="additional">
+          <!-- TODO -->
+        </div>
+        <div role="tabpanel" class="tab-pane transition fade" id="reviews">
+          <!-- TODO -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Products -->
+<section class="container padding-top padding-bottom-3x">
+  <hr>
+  <h3 class="padding-top">You May Also Like</h3>
+  <div class="row padding-top">
+    <% @related_products.each do |product| %>
+      <div class="col-lg-3 col-sm-6">
+        <div class="shop-item">
+          <div class="shop-thumbnail">
+            <span class="shop-label text-danger">Sale</span>
+            <%= link_to "", product_path(product), class: "item-link" %>
+            <%= render_image_by(product, "medium") %>
+            <div class="shop-item-tools">
+              <%= render "shop_item_tool", shop: current_shop, product: product %>
+            </div>
+          </div>
+          <div class="shop-item-details">
+            <h3 class="shop-item-title">
+              <%= link_to truncate(product.name, length: 35), product_path(product) %>
+            </h3>
+            <span class="shop-item-price">
+              <%= number_to_currency product.price %>
+            </span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

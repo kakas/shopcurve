@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129073253) do
+ActiveRecord::Schema.define(version: 20161208073205) do
 
   create_table "cart_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "cart_id"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20161129073253) do
     t.integer  "stock",                                             default: 0
     t.datetime "created_at",                                                    null: false
     t.datetime "updated_at",                                                    null: false
+    t.string   "video"
     t.index ["shop_id"], name: "index_products_on_shop_id", using: :btree
   end
 
