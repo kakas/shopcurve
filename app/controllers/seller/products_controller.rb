@@ -61,7 +61,7 @@ class Seller::ProductsController < SellerController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :stock, photo_attributes: [:image])
+    params.require(:product).permit(:name, :description, :price, :stock, :video, photo_attributes: [:image])
   end
 
 end

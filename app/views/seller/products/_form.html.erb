@@ -10,6 +10,7 @@
           <%= render_image_by(product, "thumb") %>
           <%= photo_f.file_field :image %>
         <% end %>
+        <%= f.text_field :video %>
         <%= f.submit "Submit", class: "btn btn-primary", data: {disable_with: "Submitting..."} %>
       <% end %>
     </div>
