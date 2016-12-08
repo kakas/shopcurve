@@ -1,0 +1,6 @@
+<%= bootstrap_form_for [:seller, @order], remote: true do |f| %>
+  <%= f.select :status,         enum_option_pairs(Order, :status),         {}, wrapper_class: "form-select" %>
+  <%= f.select :payment_status, enum_option_pairs(Order, :payment_status), {}, wrapper_class: "form-select" %>
+  <%= f.select :goods_status,   enum_option_pairs(Order, :goods_status),   {}, wrapper_class: "form-select" %>
+  <%= f.submit "Submit", class: "btn btn-primary btn-block space-top-none" %>
+<% end %>

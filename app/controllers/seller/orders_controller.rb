@@ -15,9 +15,7 @@ class Seller::OrdersController < SellerController
 
   def update
     if @order.update(order_params)
-      redirect_to seller_orders_path
-    else
-      render :edit
+      flash[:success] = "訂單#{@order.token}更新成功"
     end
   end
 
