@@ -36,7 +36,9 @@
                   <span class="shop-label text-danger">Sale</span>
                   <%= link_to "", product_path(product), class: "item-link" %>
                   <%= render_image_by(product, "medium") %>
-                  <%= render "shop_item_tool", shop: current_shop, product: product %>
+                  <div class="shop-item-tools">
+                    <%= render "shop_item_tool", shop: current_shop, product: product %>
+                  </div>
                 </div>
                 <div class="shop-item-details">
                   <h3 class="shop-item-title">

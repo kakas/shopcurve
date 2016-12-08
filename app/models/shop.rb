@@ -8,7 +8,7 @@ class Shop < ApplicationRecord
   has_many :products
   has_many :carts, dependent: :destroy
 
-  validates_presence_of :title, :email
+  validates_presence_of :title, :email, :subdomain
 
   before_create :set_subdomain
 

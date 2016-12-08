@@ -16,6 +16,8 @@ module ApplicationHelper
   def popup_flash_message
     flash_messages = []
     flash.each do |type, msg|
+      type = 'success' if type == 'notice'
+      type = 'warning' if type == 'alert'
       text = "<script>toastr.#{type}('#{msg}');</script>"
       flash_messages << text.html_safe if type && msg
     end

@@ -1,0 +1,6 @@
+<% if @order.valid? %>
+  Turbolinks.clearCache();
+  Turbolinks.visit("<%= seller_orders_path %>");
+<% else %>
+  $("form").html('<%= j render "form" %>');
+<% end %>
